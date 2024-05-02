@@ -1,0 +1,25 @@
+<section class="overflow-hidden text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-wrap mx-auto lg:w-4/5">
+
+            {{production()?.state_payment}}
+
+        </div>
+    </div>
+</section>
+
+
+<section class="overflow-hidden text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-wrap mx-auto lg:w-4/5">
+            <video width="560" height="315" controls>
+                <!-- <source [src]="production()?.path | safe" type="video/mp4"> -->
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                    type="video/mp4">
+                <!-- <source src="{{product()?.video}}" type="video/webm">           -->
+            </video>
+
+        </div>
+
+    </div>
+</section>
