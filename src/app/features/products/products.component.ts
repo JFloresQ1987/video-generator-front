@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Signal, inject, input } from '@angular/core';
 import { ProductsService } from '@api/products.service';
 import { CardComponent } from '@features/products/card/card.component';
 import { Product } from '@shared/models/product.interface';
@@ -10,7 +10,7 @@ import { CartStore } from '@shared/store/shopping-cart.store';
   imports: [CardComponent],
   template: `
     <section class="text-gray-600 body-font">
-      <div class="container px-5 py-24 mx-auto">
+      <div class="container px-5 py-5 mx-auto">
         <div class="flex flex-wrap -m-4">
           @for (product of products(); track $index) {
           <app-card
@@ -25,9 +25,19 @@ import { CartStore } from '@shared/store/shopping-cart.store';
   `,
 })
 export default class ProductsComponent {
-  private readonly productSvc = inject(ProductsService);
-  products = this.productSvc.products;
+  private readonly productsSvc = inject(ProductsService);
+  // products = this.productSvc.products;
   cartStore = inject(CartStore);
+
+  categoryId = input<string>('', { alias: 'id' });
+  // category!: Signal<Category | undefined>;
+  products!: Signal<Product[] | undefined>;
+
+  //getProductsByCategory
+
+  ngOnInit(): void {
+    this.products = this.productsSvc.getProductsByCategory(this.categoryId());
+  }
 
   onAddToCart(product: Product): void {
     this.cartStore.addToCart(product);

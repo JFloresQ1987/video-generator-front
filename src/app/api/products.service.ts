@@ -21,89 +21,126 @@ export class ProductsService {
   private readonly _injector = inject(EnvironmentInjector);
 
   constructor() {
-    this.getProducts();
+    // this.getProducts();
   }
 
-  public async getProducts(): Promise<void> {
-    // this._http
-    //   .get<Product[]>(`${this._endPoint}/products/?sort=desc`)
-    //   .pipe(
-    //     map((products: Product[]) =>
-    //       products.map((product: Product) => ({ ...product, qty: 1 }))
-    //     ),
-    //     tap((products: Product[]) => this.products.set(products))
-    //   )
-    //   .subscribe();
+  // public async getProducts(/*id: string*/): Promise<void> {
+  //   // this._http
+  //   //   .get<Product[]>(`${this._endPoint}/products/?sort=desc`)
+  //   //   .pipe(
+  //   //     map((products: Product[]) =>
+  //   //       products.map((product: Product) => ({ ...product, qty: 1 }))
+  //   //     ),
+  //   //     tap((products: Product[]) => this.products.set(products))
+  //   //   )
+  //   //   .subscribe();
 
-    let { data, error } = await supabase
-      .from('produtcs')
-      .select('*')
+  //   let { data, error } = await supabase
+  //     .from('products')
+  //     .select('*')
+  //     .eq('category_id', 'fa41c65d-ec26-4bc2-8824-f2b8778852f9')
+  //     // .select('id', 'name')
+  //     .order('title', { ascending: true })
 
-    if (data) this.products.set(data);
-    if (error) console.log(error)
-  }
+  //   if (data) this.products.set(data);
+  //   if (error) console.log(error)
+  // }
 
-  public async getProductById2(id: string): Promise<any> {
-    let { data, error } = await supabase
-      // .from('produtcs')
-      // .select(id)
-      .from('produtcs')
-      .select()
-      .eq('id', id)
-      .single()
+  // // public async getProductsByCategory(category_id: string): Promise<void> {
 
-    console.log('entro a single')
-      console.log(data);
+  // //   let { data, error } = await supabase
+  // //     .from('products')
+  // //     .select('*')
+  // //     .eq('category_id', category_id)      
+  // //     .order('title', { ascending: true })
 
-    if (data) return data
-    if (error) console.log(error)
-  }
+  // //   if (data) this.products.set(data);
+  // //   if (error) console.log(error)
+  // // }
 
-  // public async getProductById(id: number) {
-  public getProductById(id: string) {
-
-    // return supabase
-    //   .from('produtcs')
-    //   .select()
-    //   .eq('id', id)
-    //   .single()
-
-    return runInInjectionContext(this._injector, async () =>
-      toSignal<Product>(
-        // this._http.get<Product>(`${this._endPoint}/products/${id}`)
-       
-          await this.getProductById2(id)
-
-          // console.log('entroooo')
-       
-          // .then((result: any) => {
-          //   // this.product =  value;
-          //   // console.log('222222')
-          //   // console.log(this.product)
-          //   // console.log(str); // 👉️ "bobbyhadz.com"
-          //   return result;
-          // })
-        // data
+  public getProductsByCategory(category_id: string) {
+    return runInInjectionContext(this._injector, () =>
+      toSignal<Product[]>(
+        this._http.get<Product[]>(`${this._endPoint}/products-by-category/${category_id}`)
+      //   .subscribe((res: any) => {
+      //     this.categories.set(res.data);
+      // });
       )
     );
-
-    // const x = runInInjectionContext(this._injector, () =>
-    //   toSignal<Product>(
-    //     this._http.get<Product>(`${this._endPoint}/products/${id}`)
-    //     // data
-    //   )
-    // );
-
-    // console.log(data)
-
-    // // let { data, error } = await supabase
-    // //   .from('produtcs')
-    // //   .select(id)
-
-    // if (data) return data
-    // if (error) console.log(error)
-
-    // return data
-
   }
+
+  public getProductById(id: string) {
+    return runInInjectionContext(this._injector, () =>
+      toSignal<Product>(
+        this._http.get<Product>(`${this._endPoint}/product-by-id/${id}`)
+      //   .subscribe((res: any) => {
+      //     this.categories.set(res.data);
+      // });
+      )
+    );
+  }
+
+  // public async getProductById2(id: string): Promise<any> {
+  //   let { data, error } = await supabase
+  //     // .from('produtcs')
+  //     // .select(id)
+  //     .from('produtcs')
+  //     .select()
+  //     .eq('id', id)
+  //     .single()
+
+  //   console.log('entro a single')
+  //     console.log(data);
+
+  //   if (data) return data
+  //   if (error) console.log(error)
+  // }
+
+  // // public async getProductById(id: number) {
+  // public getProductById(id: string) {
+
+  //   // return supabase
+  //   //   .from('produtcs')
+  //   //   .select()
+  //   //   .eq('id', id)
+  //   //   .single()
+
+  //   return runInInjectionContext(this._injector, async () =>
+  //     toSignal<Product>(
+  //       // this._http.get<Product>(`${this._endPoint}/products/${id}`)
+       
+  //         await this.getProductById2(id)
+
+  //         // console.log('entroooo')
+       
+  //         // .then((result: any) => {
+  //         //   // this.product =  value;
+  //         //   // console.log('222222')
+  //         //   // console.log(this.product)
+  //         //   // console.log(str); // 👉️ "bobbyhadz.com"
+  //         //   return result;
+  //         // })
+  //       // data
+  //     )
+  //   );
+
+  //   // const x = runInInjectionContext(this._injector, () =>
+  //   //   toSignal<Product>(
+  //   //     this._http.get<Product>(`${this._endPoint}/products/${id}`)
+  //   //     // data
+  //   //   )
+  //   // );
+
+  //   // console.log(data)
+
+  //   // // let { data, error } = await supabase
+  //   // //   .from('produtcs')
+  //   // //   .select(id)
+
+  //   // if (data) return data
+  //   // if (error) console.log(error)
+
+  //   // return data
+
+  // }
 }

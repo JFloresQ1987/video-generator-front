@@ -246,7 +246,7 @@ export default class OrdersComponent {
       id: '5e4ecd7e-fa7d-42dc-bda8-6ef793d37354',
       title: 'qwe',
       price: 5,
-      category: 'qwe',
+      category_title: 'qwe',
       description: 'qwe',
       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ02w-6xm4yUZ0iItRrV5LraLLy7fXXbUNkVvYxVdv1RQ&s',
       video: '',

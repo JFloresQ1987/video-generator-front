@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 
-const routes: Routes = [
+const routes: Routes = [  
   {
     path: '',
     loadComponent: () => import('./products.component'),
-  },
-  {
-    path: ':id',
-    loadComponent: () => import('./details/details.component'),
-  },
+  },  
+  // {
+  //   path: 'models/:id',
+  //   loadComponent: () => import('./models/models.component'),
+  // },  
 ];
 export default routes;

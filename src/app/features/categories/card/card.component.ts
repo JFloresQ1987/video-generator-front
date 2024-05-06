@@ -1,6 +1,7 @@
 import { CurrencyPipe, SlicePipe } from '@angular/common';
 import { Component, EventEmitter, Output, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Category } from '@shared/models/category.interface';
 import { Product } from '@shared/models/product.interface';
 
 @Component({
@@ -10,10 +11,10 @@ import { Product } from '@shared/models/product.interface';
   templateUrl: './card.component.html',  
 })
 export class CardComponent {
-  product = input.required<Product>();
-  @Output() addToCartEvent = new EventEmitter<Product>();
+  category = input.required<Category>();
+  @Output() addToCartEvent = new EventEmitter<Category>();
 
   onAddToCart(): void {
-    this.addToCartEvent.emit(this.product());
+    // this.addToCartEvent.emit(this.category());
   }
 }

@@ -11,6 +11,6 @@ import { CartStore } from '@shared/store/shopping-cart.store';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  showCart = signal<boolean>(false);
-  cartStore = inject(CartStore);
+  // showCart = signal<boolean>(false);
+  // cartStore = inject(CartStore);
 }
