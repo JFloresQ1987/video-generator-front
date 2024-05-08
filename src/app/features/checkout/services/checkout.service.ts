@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from '@envs/environment';
 import { Product } from '@shared/models/product.interface';
-import { Production } from '@shared/models/production.interface';
+import { Order } from '@shared/models/order.interface';
 // import { loadStripe } from '@stripe/stripe-js';
 import { map } from 'rxjs';
 
@@ -43,7 +43,7 @@ export class CheckoutService {
 
     // return this._http.get<TModel>(`${this.baseUrl}${this.resourceEndpoint}/${id}`);
     // return this._http.get<Production>(`${this._url}/session-status/${session_id}`).subscribe();
-    return this._http.get<Production>(`${this._url}/session-status?session_id=${session_id}`)
+    return this._http.get<Order>(`${this._url}/session-status?session_id=${session_id}`)
     //http://localhost:4242/session-status?session_id=cs_test_a19JsZmsAJZAQTqjlzo9k8G2Ey2UKW6f03u1T6cL1OpXrFqbn5Oy2tGkSD
 
     // return this._http

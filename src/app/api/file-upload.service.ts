@@ -30,7 +30,7 @@ export class FileUploadService {
         if (data) console.log(data)
         if (error) console.log(error)
 
-        return data;
+        return data?.path;
 
 
 

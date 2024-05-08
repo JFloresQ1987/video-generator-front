@@ -13,8 +13,7 @@ import { CartStore } from '@shared/store/shopping-cart.store';
       <div class="container px-5 py-5 mx-auto">
         <div class="flex flex-wrap -m-4">
           @for (product of products(); track $index) {
-          <app-card
-            (addToCartEvent)="onAddToCart($event)"
+          <app-card            
             class="w-full p-4 lg:w-1/4 md:w-1/2"
             [product]="product"
           />
@@ -23,11 +22,26 @@ import { CartStore } from '@shared/store/shopping-cart.store';
       </div>
     </section>
   `,
+  // template: `
+  //   <section class="text-gray-600 body-font">
+  //     <div class="container px-5 py-5 mx-auto">
+  //       <div class="flex flex-wrap -m-4">
+  //         @for (product of products(); track $index) {
+  //         <app-card
+  //           (addToCartEvent)="onAddToCart($event)"
+  //           class="w-full p-4 lg:w-1/4 md:w-1/2"
+  //           [product]="product"
+  //         />
+  //         }
+  //       </div>
+  //     </div>
+  //   </section>
+  // `,
 })
 export default class ProductsComponent {
   private readonly productsSvc = inject(ProductsService);
   // products = this.productSvc.products;
-  cartStore = inject(CartStore);
+  // cartStore = inject(CartStore);
 
   categoryId = input<string>('', { alias: 'id' });
   // category!: Signal<Category | undefined>;
@@ -39,7 +53,7 @@ export default class ProductsComponent {
     this.products = this.productsSvc.getProductsByCategory(this.categoryId());
   }
 
-  onAddToCart(product: Product): void {
-    this.cartStore.addToCart(product);
-  }
+  // onAddToCart(product: Product): void {
+  //   this.cartStore.addToCart(product);
+  // }
 }

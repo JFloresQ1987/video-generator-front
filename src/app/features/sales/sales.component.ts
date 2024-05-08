@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { CheckoutService } from '@features/checkout/services/checkout.service';
-import { Production } from '@shared/models/production.interface';
+import { Order } from '@shared/models/order.interface';
 import { supabaseAdmin } from 'app/libs/supabase';
 // import { Resend } from 'resend';
 
@@ -15,14 +15,19 @@ export default class SalesComponent {
   private readonly _checkoutSvc = inject(CheckoutService);
   // private readonly resend = new Resend("re_fDEv2cRc_9hn5Xzmh72v8EBqa4vHw64Le");
 
-  blanc: Production = {
-    id: '',
-    tematic: '',
-    state: 0,
-    state_payment: 0,
-    path: '',
+  entity_blank: Order = {
+    // id: '',
+    // tematic: '',
+    order_state: "",
+    // state_payment: 0,
+    // path: '',
+    model_id: '',
+    model_composition: '',
+    // messages: null,
+    // images: null,
+    video_rendered_url: '',
   };
-  production = signal<Production | undefined>(this.blanc);
+  production = signal<Order | undefined>(this.entity_blank);
 
   state_222: any
 
@@ -59,28 +64,28 @@ export default class SalesComponent {
           console.log(result)
 
           if (result.status == 'expired') {
-            
+
             console.log('entro a completar estado de venta')
             console.log(data.id)
-            
-            supabaseAdmin            
+
+            supabaseAdmin
               .from('production')
               .upsert({
                 id: data.id,
                 state_payment: 1,
               })
 
-              console.log('Entro a enviar correo')
+            console.log('Entro a enviar correo')
 
-              // // const { data, error } = await resend.emails.send({
-              //   await this.resend.emails.send({
-              //   from: "Dev Jorge <jfloresq1987@gmail.com>",
-              //   to: ["jfloresq1987@gmail.com"],
-              //   subject: "hello world",
-              //   html: "<strong>it works!</strong>",
-              // });
+            // // const { data, error } = await resend.emails.send({
+            //   await this.resend.emails.send({
+            //   from: "Dev Jorge <jfloresq1987@gmail.com>",
+            //   to: ["jfloresq1987@gmail.com"],
+            //   subject: "hello world",
+            //   html: "<strong>it works!</strong>",
+            // });
 
-            
+
             // if (data) console.log(data)
             // if (error) console.log(error)
           }

@@ -1,0 +1,68 @@
+<section class="overflow-hidden text-gray-600 body-font">
+    <div class="container px-5 py-5 mx-auto">  
+        
+               <!-- Espere unos minutos mientras el proceso de creación del video termine.
+        <br><br>
+        <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+            
+            <div class="bg-blue-600 h-2.5 rounded-full" [style]="progress"></div>
+        </div>
+
+        <br><br> -->
+
+        <!-- <app-spinner /> -->
+
+        <!-- <div class="overlay">
+            <div class="flex justify-center items-center min-h-screen">
+              <div
+                class="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-orange-500"
+              ></div>
+            </div>
+          </div> -->
+
+
+        @if (order()?.order_state=="created") {
+
+        <div class="flex justify-center">
+            <div class="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-orange-500"></div>
+        </div>
+
+        <br>
+
+        <div class="flex justify-center">
+            <span
+                class="w-24 bg-orange-500 text-white align-middle inline-block whitespace-nowrap rounded-[0.27rem] bg-primary-100 px-[0.65em] pb-[0.45em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700 dark:bg-slate-900 dark:text-primary-500">
+                <!-- {{order_state}} -->
+                Creando...
+            </span>
+        </div>
+        <div class="flex justify-center">
+            <p class="mt-2 mb-5 leading-relaxed ">Espere unos minutos mientras el proceso de creación del video termine.
+            </p>
+        </div>
+
+        }
+
+        @if (order()?.order_state=="produced") {
+
+        <section class="overflow-hidden text-gray-600 body-font">
+            <div class="container px-5 py-5 mx-auto">
+                <div class="flex flex-wrap mx-auto lg:w-5/5">
+                    <video width="560" height="315" controls>
+                        <source [src]="order()?.video_rendered_url | safe" type="video/mp4">
+
+                    </video>
+
+                </div>
+
+                <div class="flex w-full pl-4 mx-auto mt-4 lg:w-2/3">
+                    <button (click)="onProceedToPay()"
+                        class="flex px-6 py-2 ml-auto text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-orange-600">Pagar</button>
+                </div>
+            </div>
+        </section>
+
+        }
+
+    </div>
+</section>

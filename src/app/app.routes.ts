@@ -19,6 +19,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/orders/orders.component'),
   },
   {
+    path: 'previews/:id',
+    loadComponent: () => import('./features/previews/previews.component'),
+  },
+  {
     path: 'sales/:id',
     // path: 'sales',
     loadComponent: () => import('./features/sales/sales.component'),

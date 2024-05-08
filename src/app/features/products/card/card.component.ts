@@ -11,9 +11,9 @@ import { Product } from '@shared/models/product.interface';
 })
 export class CardComponent {
   product = input.required<Product>();
-  @Output() addToCartEvent = new EventEmitter<Product>();
+  // @Output() addToCartEvent = new EventEmitter<Product>();
 
-  onAddToCart(): void {
-    this.addToCartEvent.emit(this.product());
-  }
+  // onAddToCart(): void {
+  //   this.addToCartEvent.emit(this.product());
+  // }
 }

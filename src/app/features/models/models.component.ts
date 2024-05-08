@@ -3,6 +3,7 @@ import { Component, OnInit, Signal, inject, input, signal } from '@angular/core'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { ModelsService } from '@api/models.service';
+import { OrdersService } from '@api/orders.service';
 import { Model } from '@shared/models/model.interface';
 import { CartStore } from '@shared/store/shopping-cart.store';
 import { SafePipe } from 'app/common/pipe/safe.pipe';
@@ -78,9 +79,20 @@ export default class ModelsComponent implements OnInit {
   //   // })
   // }
 
+  // order!: Signal<Order2 | undefined>;
+
+  // private readonly ordersSvc = inject(OrdersService);
+
   ngOnInit(): void {
     this.models = this.modelsSvc.getModelsByProduct(this.productId());
     // this.products = this.productsSvc.getProductsByCategory(this.categoryId());
+
+    // this.order = this.ordersSvc.getOrderById("f19133e0-d2ae-4ffd-9f76-b3de859162b1");
+    // // console.log('salio')
+    // // console.log(this.order);
+    // console.log(this.order());
+    // console.log('ennnn')
+    // console.log(this.models());
   }
 
   // async getProfile(id: string) {
@@ -122,9 +134,9 @@ export default class ModelsComponent implements OnInit {
   //   }
   // }
 
-  onAddToCart() {
-    // this.cartStore.addToCart(this.product() as Product);
-  }
+  // onAddToCart() {
+  //   // this.cartStore.addToCart(this.product() as Product);
+  // }
 
   generateSVG(index: number): SafeHtml {
     let svgContent = null;
