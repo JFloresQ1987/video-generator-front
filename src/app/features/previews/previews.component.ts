@@ -1,6 +1,8 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit, Signal, inject, input, signal } from '@angular/core';
 import { ModelsService } from '@api/models.service';
 import { OrdersService } from '@api/orders.service';
+import { CheckoutService } from '@features/checkout/services/checkout.service';
 import SpinnerComponent from '@shared/components/spinner.component';
 import { Model } from '@shared/models/model.interface';
 import { Order } from '@shared/models/order.interface';
@@ -12,7 +14,7 @@ import { supabaseAdmin } from 'app/libs/supabase';
 @Component({
   selector: 'app-previews',
   standalone: true,
-  imports: [SpinnerComponent, SafePipe],
+  imports: [CurrencyPipe, SafePipe],
   templateUrl: './previews.component.html'
 })
 export default class PreviewsComponent implements OnInit {
@@ -23,13 +25,14 @@ export default class PreviewsComponent implements OnInit {
   // order!: Signal<Order | undefined>;
 
   entity_blank: Order = {
-    // id: '',
+    id: '',
     // tematic: '',
     order_state: '',
     // state_payment: 0,
     // path: '',
     model_id: '',
     model_composition: '',
+    model_price: 0,
     // messages: null,
     // images: null,
     video_rendered_url: '',
@@ -37,6 +40,7 @@ export default class PreviewsComponent implements OnInit {
   order = signal<Order | undefined>(this.entity_blank);
 
   private readonly ordersSvc = inject(OrdersService);
+  private readonly _checkoutSvc = inject(CheckoutService);
 
   // entity_blank: Order = {
   //   // id: '',
@@ -129,7 +133,7 @@ export default class PreviewsComponent implements OnInit {
 
   onProceedToPay(): void {
     console.log('entroo a pagar');
-    // this._checkoutSvc.onProceedToPay();
+    this._checkoutSvc.onProceedToPay(this.orderId());
     // this._checkoutSvc.onProceedToPay(this.cartStore.products());
   }
 

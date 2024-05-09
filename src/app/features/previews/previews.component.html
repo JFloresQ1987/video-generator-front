@@ -1,7 +1,7 @@
 <section class="overflow-hidden text-gray-600 body-font">
-    <div class="container px-5 py-5 mx-auto">  
-        
-               <!-- Espere unos minutos mientras el proceso de creación del video termine.
+    <div class="container px-5 py-5 mx-auto">
+
+        <!-- Espere unos minutos mientras el proceso de creación del video termine.
         <br><br>
         <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
             
@@ -45,7 +45,44 @@
 
         @if (order()?.order_state=="produced") {
 
-        <section class="overflow-hidden text-gray-600 body-font">
+            <section class="overflow-hidden text-gray-600 body-font">
+                <div class="container px-5 py-5 mx-auto">
+                  <div class="flex flex-wrap mx-auto lg:w-5/5">
+                    <video width="560" height="315" controls>
+                        <source [src]="order()?.video_rendered_url | safe" type="video/mp4">
+                    </video>
+                    <div class="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0">
+                      <h2 class="text-sm tracking-widest text-gray-500 title-font">Estás a un paso de adquir tú</h2>
+                      <h1 class="mb-1 text-3xl font-medium text-gray-900 title-font">Video Invitación Super Exclusivo!</h1>
+                      <!-- <div class="flex mb-4">
+                        <span class="flex items-center">
+                          @for (star of starsArray; track index; let index = $index) {
+                          <span [innerHTML]="generateSVG(index)"></span>
+                          }
+                          <span class="ml-3 text-gray-600"> {{model?.rating?.count}} reviews</span>
+                        </span>
+                      </div> -->
+                      <p class="mt-6 mb-5 leading-relaxed ">
+                        · 3 Correcciones incluidas
+                        <br>
+                        · 7 Días para corregir tu video invitación
+                        </p>
+                      <div class="flex">
+                        <span class="text-2xl text-gray-900 title-font">Compralo ahora por</span>
+                        <span class="text-2xl font-bold text-orange-500">&nbsp;{{order()?.model_price | currency}}</span>
+                        <button (click)="onProceedToPay()"
+                          class="px-2 py-1 ml-auto text-white bg-orange-500 rounded hover:bg-orange-700">
+                          Comprar Ahora
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+
+
+        <!-- <section class="overflow-hidden text-gray-600 body-font">
             <div class="container px-5 py-5 mx-auto">
                 <div class="flex flex-wrap mx-auto lg:w-5/5">
                     <video width="560" height="315" controls>
@@ -57,10 +94,11 @@
 
                 <div class="flex w-full pl-4 mx-auto mt-4 lg:w-2/3">
                     <button (click)="onProceedToPay()"
-                        class="flex px-6 py-2 ml-auto text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-orange-600">Pagar</button>
+                        class="flex px-6 py-2 ml-auto text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-orange-600">
+                        Realizar Pago</button>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         }
 

@@ -9,7 +9,7 @@ import { FileUploadComponent } from '@shared/components/file-upload/file-upload.
 import { supabase, supabaseAdmin } from 'app/libs/supabase';
 import { FileUploadService } from '@api/file-upload.service';
 import { Subject } from 'rxjs';
-import { Images, Messages, Order } from '@shared/models/order.interface';
+import { Images, Messages, NewOrder, Order } from '@shared/models/order.interface';
 import { SafePipe } from 'app/common/pipe/safe.pipe';
 import { CheckoutService } from '@features/checkout/services/checkout.service';
 import { CartStore } from '@shared/store/shopping-cart.store';
@@ -149,9 +149,10 @@ export default class OrdersComponent {
       images.fifth_image = await this.uploadService.upload(this.fileFifth);
     }
 
-    const entity: Order = {
+    const entity: NewOrder = {
       model_id: '59948e5e-abd6-4260-b49a-496c8fd4f447',
       model_composition: 'BobEsponja1',
+      model_price: 5,
       order_state: "created",
       messages: messages,
       images: images,

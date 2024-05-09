@@ -27,6 +27,11 @@ export const routes: Routes = [
     // path: 'sales',
     loadComponent: () => import('./features/sales/sales.component'),
   }, 
+  {
+    path: 'edits/:id',
+    // path: 'sales',
+    loadComponent: () => import('./features/edits/edits.component'),
+  }, 
   // {
   //   path: 'checkout',
   //   loadComponent: () => import('./features/checkout/checkout.component'),

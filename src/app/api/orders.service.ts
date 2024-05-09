@@ -9,7 +9,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { environment } from '@envs/environment';
 import { Model } from '@shared/models/model.interface';
-import { Order } from '@shared/models/order.interface';
+import { NewOrder, Order } from '@shared/models/order.interface';
 import { Product } from '@shared/models/product.interface';
 import { map, tap } from 'rxjs';
 
@@ -26,10 +26,16 @@ export class OrdersService {
         // this.getProducts();
     }
 
-    crear(entity: Order) {
+    crear(entity: NewOrder) {
         // const url = `${base_url}/analistas`;
         const url = `${this._endPoint}/orders`;
         return this._http.post(url, entity);
+    }
+
+    editar(entity: Order) {
+        // const url = `${base_url}/analistas`;
+        const url = `${this._endPoint}/orders`;
+        return this._http.put(url, entity);
     }
 
     // public getModelsByProduct(product_id: string) {
