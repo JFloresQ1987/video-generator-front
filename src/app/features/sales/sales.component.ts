@@ -1,7 +1,7 @@
 import { Component, inject, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { OrdersService } from '@api/orders.service';
-import { CheckoutService } from '@features/checkout/services/checkout.service';
+import { CheckoutService } from '@api/checkout.service';
 import { Order } from '@shared/models/order.interface';
 import { SafePipe } from 'app/common/pipe/safe.pipe';
 import { supabaseAdmin } from 'app/libs/supabase';

@@ -6,8 +6,7 @@ export const routes: Routes = [
     loadChildren: () => import('./features/categories/categories.routes'),
   },
   {
-    path: 'products/:id',
-    // path: 'products/:id',
+    path: 'products/:id',    
     loadChildren: () => import('./features/products/products.routes'),
   },
   {
@@ -23,19 +22,13 @@ export const routes: Routes = [
     loadComponent: () => import('./features/previews/previews.component'),
   },
   {
-    path: 'sales/:id',
-    // path: 'sales',
+    path: 'sales/:id',    
     loadComponent: () => import('./features/sales/sales.component'),
   }, 
   {
-    path: 'edits/:id',
-    // path: 'sales',
+    path: 'edits/:id',    
     loadComponent: () => import('./features/edits/edits.component'),
   }, 
-  // {
-  //   path: 'checkout',
-  //   loadComponent: () => import('./features/checkout/checkout.component'),
-  // },
   { path: '', redirectTo: 'categories', pathMatch: 'full' },
   { path: '**', redirectTo: 'categories', pathMatch: 'full' },
 ];

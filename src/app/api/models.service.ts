@@ -9,13 +9,11 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { environment } from '@envs/environment';
 import { Model } from '@shared/models/model.interface';
-import { map, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ModelsService {
     public models = signal<Model[]>([]);
-    private readonly _http = inject(HttpClient);
-    // private readonly _supabase = inject(supabase);
+    private readonly _http = inject(HttpClient);    
     private readonly _endPoint = environment.apiURL;
     private readonly _injector = inject(EnvironmentInjector);
 
@@ -34,14 +32,8 @@ export class ModelsService {
         );
     }
 
-    public getModelById(id: string) {
-        return runInInjectionContext(this._injector, () =>
-            toSignal<Model>(
-                this._http.get<Model>(`${this._endPoint}/model-by-id/${id}`)
-                //   .subscribe((res: any) => {
-                //     this.categories.set(res.data);
-                // });
-            )
-        );
+    getModelById(id: string) {
+        const url = `${this._endPoint}/model-by-id/${id}`;
+        return this._http.get(url);
     }
 }

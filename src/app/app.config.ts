@@ -14,7 +14,7 @@ import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
-    provideToastr({ timeOut: 900, preventDuplicates: true }),
+    provideToastr({ timeOut: 3000, positionClass: 'toast-bottom-right', preventDuplicates: true }),
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(
       withFetch(),

@@ -3,14 +3,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FileUploadService } from '@api/file-upload.service';
 import { OrdersService } from '@api/orders.service';
-import { FileUploadComponent } from '@shared/components/file-upload/file-upload.component';
+// import { FileUploadComponent } from '@shared/components/file-upload/file-upload.component';
 import { Images, Messages, Order } from '@shared/models/order.interface';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edits',
   standalone: true,
-  imports: [FileUploadComponent, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './edits.component.html'
 })
 export default class EditsComponent {

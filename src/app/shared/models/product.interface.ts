@@ -15,3 +15,9 @@ export interface Product {
   qty: number;
   subTotal: number;
 }
+
+export interface ProductCheckout {  
+  title?: string;  
+  image?: string;
+  price?: number;    
+}

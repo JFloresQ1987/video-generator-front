@@ -1,31 +1,24 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-// import { MatCardModule } from '@angular/material/card';
-// import { MatInput } from '@angular/material/input';
-// import { MatIcon } from '@angular/material/icon';
-// import { MatButton } from '@angular/material/button';
-// import { MatFormFieldModule } from '@angular/material/form-field';
-import { FileUploadComponent } from '@shared/components/file-upload/file-upload.component';
-import { supabase, supabaseAdmin } from 'app/libs/supabase';
-import { FileUploadService } from '@api/file-upload.service';
-import { Subject } from 'rxjs';
-import { Images, Messages, NewOrder, Order } from '@shared/models/order.interface';
+import { Component, inject, input, signal } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Images, Messages, NewOrder } from '@shared/models/order.interface';
 import { SafePipe } from 'app/common/pipe/safe.pipe';
-import { CheckoutService } from '@features/checkout/services/checkout.service';
-import { CartStore } from '@shared/store/shopping-cart.store';
-import { Product } from '@shared/models/product.interface';
 import { OrdersService } from '@api/orders.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ModelsService } from '@api/models.service';
+import { Model } from '@shared/models/model.interface';
+import { FileUploadService } from '@api/file-upload.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [SafePipe, FileUploadComponent/*, MatCardModule, MatInput, MatIcon, MatButton, MatFormFieldModule*/, ReactiveFormsModule],
+  imports: [SafePipe, ReactiveFormsModule, CommonModule],
   templateUrl: './orders.component.html'
 })
 export default class OrdersComponent {
 
+  modelId = input<string>('', { alias: 'id' });
   myForm: FormGroup;
 
   fileFirst?: File;
@@ -34,89 +27,84 @@ export default class OrdersComponent {
   fileFourth?: File;
   fileFifth?: File;
 
-  private readonly _checkoutSvc = inject(CheckoutService);
+  entity_blank: Model = {
+    id: '',
+    title: '',
+    price: 0,
+    category_title: '',
+    description: '',
+    image: '',
+    video: '',
+    rating: {
+      rate: 0,
+      count: 0,
+    },
+    qty: 0,
+    subTotal: 0,
+    composition: '',
+    total_messages: 0,
+    total_images: 0,
+  };
+
+  model = signal<Model>(this.entity_blank);
+  private readonly modelsSvc = inject(ModelsService);
   private readonly ordersSvc = inject(OrdersService);
   private readonly toastSvc = inject(ToastrService)
-  // cartStore = inject(CartStore);
-
-  // progress: string = 'width: 1%';
-
-  // entity_blank: Order = {
-  //   // id: '',
-  //   // tematic: '',
-  //   // state: 0,
-  //   // state_payment: 0,
-  //   // path: '',
-  //   model_id: '',
-  //   model_composition: '',
-  //   // messages: null,
-  //   // images: null,
-  //   video_rendered_url: '',
-  // };
-  // production = signal<Order | undefined>(this.entity_blank);
 
   constructor(private fb: FormBuilder,
     private uploadService: FileUploadService,
     private router: Router) {
     this.myForm = this.fb.group({
-
-      first_message: "",
-      second_message: "",
-      third_message: "",
-      fourth_message: "",
-      fifth_message: "",
-      sixth_message: "",
-      seventh_message: "",
-      eighth_message: "",
-      nineth_message: "",
-      tenth_message: "",
-      eleventh_message: "",
-      twelfth_message: "",
-      thirteenth_message: "",
-      fourteenth_message: "",
-      fifteenth_message: "",
+      first_message: ['', [Validators.maxLength(20)]],
+      second_message: ['', [Validators.maxLength(20)]],
+      third_message: ['', [Validators.maxLength(20)]],
+      fourth_message: ['', [Validators.maxLength(20)]],
+      fifth_message: ['', [Validators.maxLength(20)]],
+      sixth_message: ['', [Validators.maxLength(20)]],
+      seventh_message: ['', [Validators.maxLength(20)]],
+      eighth_message: ['', [Validators.maxLength(20)]],
+      nineth_message: ['', [Validators.maxLength(20)]],
+      tenth_message: ['', [Validators.maxLength(20)]],
+      eleventh_message: ['', [Validators.maxLength(20)]],
+      twelfth_message: ['', [Validators.maxLength(20)]],
+      thirteenth_message: ['', [Validators.maxLength(20)]],
+      fourteenth_message: ['', [Validators.maxLength(20)]],
+      fifteenth_message: ['', [Validators.maxLength(20)]],
     });
 
-    //TODO: llamado a sincronización de data para saber si ya se renderizo video
-    // this.getTableChanges();
+    //TODO: llamado a sincronización de data para saber si ya se renderizo video    
   }
 
-  // async ngOnInit(): Promise<void> {
-  //   // this.notificationsService.subscribeToRealtimeNotifications()
-  //   supabaseAdmin
-  //     .channel('todos')
-  //     .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'orders' }, this.handleInserts)
-  //     .subscribe()
-  // }
+  ngOnInit(): void {
 
-  //   public subscribeToRealtimeNotifications(): void {
-  //     this.notificationsChannel = supabaseClient
-  //       .channel('notificationsChannel')
-  //       .on('postgres_changes', {
-  //     ...
-  //     })
-  //     this.notificationsChannel.subscribe()
-  // }
+    this.modelsSvc.getModelById(this.modelId()).subscribe((res: any) => {
+      this.model.set(res);
+      this.validar();
+    });
+  }
 
   async createOrder() {
-    // console.log('Form values:', this.myForm.value);
 
-    // // let image: any = undefined;
-    // let images: {      
-    //   first_image: 'string',
-    //   second_image: 'string',
-    //   third_image: 'string',
-    //   fourth_image: 'string',
-    //   fifth_image: 'string',
-    // };
+    this.submitted = true;
 
-    // type Images = {
-    //   first_image: string,
-    //   second_image: string,
-    //   third_image: string,
-    //   fourth_image: string,
-    //   fifth_image: string,
-    // };
+    if (this.myForm.invalid) {
+      console.log('entro')
+      this.toastSvc.warning('Validar la información proporcionada.', 'Alerta');
+      return;
+    }
+
+    // if (!this.myForm.valid) {
+
+    //   console.log('entro')
+    //   this.toastSvc.warning('Validar la información proporcionada.', 'Alerta');
+
+    //   // Swal.fire({
+    //   //   text: "Validar la información proporcionada.", icon: 'warning'
+    //   // });
+    //   return;
+    // }
+
+    console.log('paso')
 
     const images: Images = {
       first_image: null,
@@ -129,30 +117,25 @@ export default class OrdersComponent {
     // const images: Images = {};
     const messages: Messages = { ...this.myForm.value };
 
-    if (this.fileFirst) {
+    if (this.fileFirst)
       images.first_image = await this.uploadService.upload(this.fileFirst);
-    }
 
-    if (this.fileSecond) {
+    if (this.fileSecond)
       images.second_image = await this.uploadService.upload(this.fileSecond);
-    }
 
-    if (this.fileThird) {
+    if (this.fileThird)
       images.third_image = await this.uploadService.upload(this.fileThird);
-    }
 
-    if (this.fileFourth) {
+    if (this.fileFourth)
       images.fourth_image = await this.uploadService.upload(this.fileFourth);
-    }
 
-    if (this.fileFifth) {
+    if (this.fileFifth)
       images.fifth_image = await this.uploadService.upload(this.fileFifth);
-    }
 
     const entity: NewOrder = {
-      model_id: '59948e5e-abd6-4260-b49a-496c8fd4f447',
-      model_composition: 'BobEsponja1',
-      model_price: 5,
+      model_id: this.model()?.id,
+      model_composition: this.model()?.composition,
+      model_price: this.model()?.price,
       order_state: "created",
       messages: messages,
       images: images,
@@ -161,18 +144,18 @@ export default class OrdersComponent {
 
     // console.log('Form values:', entity);
 
+    // return;
+
     this.ordersSvc.crear(entity).subscribe((res: any) => {
       // this.analistaService.crear(this.form.value).subscribe(res => {
 
       // console.log(res);
       //TODO: Mejorar respuesta y manejo de errores
       if (res.ok) {
-        this.toastSvc.success('El orden de pedido fue creada!');
+        this.toastSvc.success('El orden de pedido fue creada!', 'Info');
         this.router.navigateByUrl(`/previews/${res.data.id}`);
         // this.progress = 'width: 10%';
       }
-
-
 
       // this.formSubmitted = false;
       // if (res['ok']) {
@@ -186,132 +169,110 @@ export default class OrdersComponent {
       //   });
       // }
     })
-
-    // const { data, error } = await supabase
-    //   .from('production')
-    //   .insert([
-    //     // { some_column: 'someValue', other_column: 'otherValue' },
-    //     // this.myForm.value,
-    //     entity
-    //   ])
-    //   .select()
-
-    // if (data) console.log(data)
-    // if (error) console.log(error)
   }
-
-  // onFileSelected() {
-  //   const inputNode: any = document.querySelector('#file');
-
-
-  //   if (typeof (FileReader) !== 'undefined') {
-  //     const reader = new FileReader();
-
-  //     reader.onload = (e: any) => {
-  //       // this.srcResult = e.target.result;
-  //       // console.log(e.target.result);
-  //       const result = e.target.result;
-  //       console.log(result);
-  //     };
-
-  //     reader.readAsArrayBuffer(inputNode.files[0]);
-  //     console.log(reader);
-  //   }
-  // }
 
   selectFirstFile(event: any): void {
     this.fileFirst = event.target.files.item(0);
   }
 
   selectSecondFile(event: any): void {
-    this.fileFirst = event.target.files.item(0);
+    this.fileSecond = event.target.files.item(0);
   }
 
   selectThirdFile(event: any): void {
-    this.fileFirst = event.target.files.item(0);
+    this.fileThird = event.target.files.item(0);
   }
 
   selectFourthFile(event: any): void {
-    this.fileFirst = event.target.files.item(0);
+    this.fileFourth = event.target.files.item(0);
   }
 
   selectFifthFile(event: any): void {
-    this.fileFirst = event.target.files.item(0);
+    this.fileFifth = event.target.files.item(0);
   }
 
+  validar() {
 
-  // handleInserts(payload: any): void {
-  //   // this.message = '';
-  //   console.log('Change received!', payload)
-  //   // console.log('data', payload.new)
+    if ((this.model().total_messages || 0) >= 1)
+      this.myForm.get('first_message')?.setValidators([Validators.maxLength(20), Validators.required]);
 
-  //   this.production.set(payload.new);
+    if ((this.model().total_messages || 0) >= 2)
+      this.myForm.get('second_message')?.setValidators([Validators.maxLength(20), Validators.required]);
 
-  //   console.log('llegoooo')
-  //   console.log(this.production())
+    if ((this.model().total_messages || 0) >= 3)
+      this.myForm.get('third_message')?.setValidators([Validators.maxLength(20), Validators.required]);
 
-  //   // const blanc: Product = {
-  //   //   id: '5e4ecd7e-fa7d-42dc-bda8-6ef793d37354',
-  //   //   title: 'qwe',
-  //   //   price: 5,
-  //   //   category_title: 'qwe',
-  //   //   description: 'qwe',
-  //   //   image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ02w-6xm4yUZ0iItRrV5LraLLy7fXXbUNkVvYxVdv1RQ&s',
-  //   //   video: '',
-  //   //   rating: {
-  //   //     rate: 4.5,
-  //   //     count: 120,
-  //   //   },
-  //   //   qty: 1,
-  //   //   subTotal: 0
-  //   // };
+    if ((this.model().total_messages || 0) >= 4)
+      this.myForm.get('fourth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
 
-  //   // this.onAddToCart(blanc);
+    if ((this.model().total_messages || 0) >= 5)
+      this.myForm.get('fifth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
 
+    if ((this.model().total_messages || 0) >= 6)
+      this.myForm.get('sixth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+
+    if ((this.model().total_messages || 0) >= 7)
+      this.myForm.get('seventh_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+
+    if ((this.model().total_messages || 0) >= 8)
+      this.myForm.get('eighth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+
+    if ((this.model().total_messages || 0) >= 9)
+      this.myForm.get('nineth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+
+    if ((this.model().total_messages || 0) >= 10)
+      this.myForm.get('tenth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+
+    if ((this.model().total_messages || 0) >= 11)
+      this.myForm.get('eleventh_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+
+    if ((this.model().total_messages || 0) >= 12)
+      this.myForm.get('twelfth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+
+    if ((this.model().total_messages || 0) >= 13)
+      this.myForm.get('thirteenth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+
+    if ((this.model().total_messages || 0) >= 14)
+      this.myForm.get('fourteenth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+
+    if ((this.model().total_messages || 0) >= 15)
+      this.myForm.get('fifteenth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+  }
+
+  submitted = false;
+
+  formControlIsInitial(formControl: string): boolean {
+
+    if (this.submitted || this.myForm.get(formControl)?.touched)
+      return false;
+    else      
+      return true;
+  }
+
+  formControlIsValid(formControl: string): boolean {
+
+    if (this.myForm.get(formControl)?.valid &&
+      (this.submitted || this.myForm.get(formControl)?.touched))
+      return true;
+    else      
+      return false;
+  }
+
+  isValid(formControl: string, key: string): boolean {
+
+    if (this.myForm.get(formControl)?.hasError(key) &&
+      (this.submitted || this.myForm.get(formControl)?.touched))
+      return true;
+    else
+      return false;
+  }
+
+  // get f(): { [key: string]: AbstractControl } {
+  //   return this.myForm.controls;
   // }
 
-  // getTableChanges() {
-  //   // const changes = new Subject();
-
-  //   // supabase
-  //   //   .channel('todos')
-  //   //   .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'production' }, this.handleInserts)
-  //   //   .subscribe()
-
-  //   supabase
-  //     .channel('todos')
-  //     .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'production' }, (payload: any) => {
-  //       // changes.next(payload);
-  //       this.handleInserts(payload);
-  //     })
-  //     .subscribe()
-
-  //   // supabase
-  //   //   .from(CARDS_TABLE)
-  //   //   .on('*', (payload: any) => {
-  //   //     changes.next(payload);
-  //   //   })
-  //   //   .subscribe();
-
-  //   // this.supabase
-  //   //   .from(LISTS_TABLE)
-  //   //   .on('*', (payload: any) => {
-  //   //     changes.next(payload);
-  //   //   })
-  //   //   .subscribe();
-
-  //   // return changes.asObservable();
+  // onReset(): void {
+  //   this.submitted = false;
+  //   this.myForm.reset();
   // }
-
-  // // onAddToCart(product: Product): void {
-  // //   // this.cartStore.addToCart(product);
-  // // }
-
-  // onProceedToPay(): void {
-  //   console.log('entroo a pagar');
-  //   this._checkoutSvc.onProceedToPay();
-  //   // this._checkoutSvc.onProceedToPay(this.cartStore.products());
-  // }
-
-
 }

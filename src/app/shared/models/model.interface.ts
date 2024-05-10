@@ -14,5 +14,8 @@ interface Rating {
     rating: Rating;
     qty: number;
     subTotal: number;
+    composition: string;
+    total_messages?: number;
+    total_images?: number;
   }
   

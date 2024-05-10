@@ -41,15 +41,15 @@ export interface Order {
 export interface NewOrder {
   // id: string;
   // tematic: string;
-  order_state: string;
+  order_state?: string;
   // state_payment: number;
   // path: string;    
-  model_id: string;
-  model_composition: string;
-  model_price: number;
+  model_id?: string;
+  model_composition?: string;
+  model_price?: number;
   messages?: Messages | undefined;
   images?: Images | undefined;
-  video_rendered_url: string;
+  video_rendered_url?: string;
 }
 
 // export interface Order2 {
