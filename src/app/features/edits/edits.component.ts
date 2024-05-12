@@ -95,9 +95,11 @@ export default class EditsComponent {
       model_composition: 'BobEsponja1',
       model_price: 5,
       order_state: "created",
+      payment_state: "",
       messages: messages,
       images: images,
       video_rendered_url: '',
+      video_rendered_url_with_watermark: '',
     };
 
     // console.log('Form values:', entity);

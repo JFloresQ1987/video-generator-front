@@ -23,7 +23,7 @@
 
         }
 
-        @if (order()?.order_state=="produced") {
+        @if (order()?.payment_state=="paid" && order()?.order_state=="produced") {
 
         <section class="overflow-hidden text-gray-600 body-font">
             <div class="container px-5 py-5 mx-auto">

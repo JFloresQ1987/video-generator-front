@@ -28,6 +28,7 @@ export interface Order {
   id: string;
   // tematic: string;
   order_state: string;
+  payment_state: string
   // state_payment: number;
   // path: string;    
   model_id: string;
@@ -36,6 +37,7 @@ export interface Order {
   messages?: Messages | undefined;
   images?: Images | undefined;
   video_rendered_url: string;
+  video_rendered_url_with_watermark: string;
 }
 
 export interface NewOrder {

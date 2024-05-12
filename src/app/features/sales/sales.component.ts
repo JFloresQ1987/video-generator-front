@@ -22,6 +22,7 @@ export default class SalesComponent {
     id: '',
     // tematic: '',
     order_state: '',
+    payment_state: '',
     // state_payment: 0,
     // path: '',
     model_id: '',
@@ -30,6 +31,7 @@ export default class SalesComponent {
     // messages: null,
     // images: null,
     video_rendered_url: '',
+    video_rendered_url_with_watermark: '',
   };
   order = signal<Order | undefined>(this.entity_blank);
 

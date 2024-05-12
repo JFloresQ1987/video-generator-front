@@ -1,5 +1,5 @@
 import { Component, inject, input, signal } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Images, Messages, NewOrder } from '@shared/models/order.interface';
 import { SafePipe } from 'app/common/pipe/safe.pipe';
 import { OrdersService } from '@api/orders.service';
@@ -9,17 +9,21 @@ import { ModelsService } from '@api/models.service';
 import { Model } from '@shared/models/model.interface';
 import { FileUploadService } from '@api/file-upload.service';
 import { CommonModule } from '@angular/common';
+import { CaptchaComponent } from '@shared/components/captcha/captcha.component';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [SafePipe, ReactiveFormsModule, CommonModule],
+  imports: [SafePipe, ReactiveFormsModule, CommonModule, RecaptchaModule, RecaptchaFormsModule],
   templateUrl: './orders.component.html'
 })
 export default class OrdersComponent {
 
   modelId = input<string>('', { alias: 'id' });
   myForm: FormGroup;
+
+  
 
   fileFirst?: File;
   fileSecond?: File;
@@ -51,10 +55,24 @@ export default class OrdersComponent {
   private readonly ordersSvc = inject(OrdersService);
   private readonly toastSvc = inject(ToastrService)
 
+  public reactiveForm: FormGroup = new FormGroup({
+    recaptchaReactive: new FormControl(null, Validators.required),
+  });
+
   constructor(private fb: FormBuilder,
     private uploadService: FileUploadService,
     private router: Router) {
-    this.myForm = this.fb.group({
+    
+  //   public reactiveForm: FormGroup = new FormGroup({
+  //   recaptchaReactive: new FormControl(null, Validators.required),
+  // });
+
+  // recaptchaReactive: new FormControl(null, Validators.required),
+    
+      this.myForm = this.fb.group({
+      recaptchaReactive: new FormControl(null, Validators.required),
+      // recaptchaReactive: '',
+      // recaptchaReactive: [null, [Validators.required]],
       first_message: ['', [Validators.maxLength(20)]],
       second_message: ['', [Validators.maxLength(20)]],
       third_message: ['', [Validators.maxLength(20)]],
@@ -83,6 +101,12 @@ export default class OrdersComponent {
     });
   }
 
+  public captchaResolved : boolean = false;
+  checkCaptcha(captchaResponse : any) {
+    console.log(captchaResponse)
+    this.captchaResolved = (captchaResponse && captchaResponse.length > 0) ? true : false
+}
+
   async createOrder() {
 
     this.submitted = true;
@@ -105,6 +129,8 @@ export default class OrdersComponent {
     // }
 
     console.log('paso')
+
+    // return;
 
     const images: Images = {
       first_image: null,
@@ -144,7 +170,7 @@ export default class OrdersComponent {
 
     // console.log('Form values:', entity);
 
-    // return;
+     return;
 
     this.ordersSvc.crear(entity).subscribe((res: any) => {
       // this.analistaService.crear(this.form.value).subscribe(res => {

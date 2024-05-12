@@ -28,6 +28,7 @@ export default class PreviewsComponent implements OnInit {
     id: '',
     // tematic: '',
     order_state: '',
+    payment_state: '',
     // state_payment: 0,
     // path: '',
     model_id: '',
@@ -36,6 +37,7 @@ export default class PreviewsComponent implements OnInit {
     // messages: null,
     // images: null,
     video_rendered_url: '',
+    video_rendered_url_with_watermark: '',
   };
   order = signal<Order | undefined>(this.entity_blank);
 
@@ -83,7 +85,7 @@ export default class PreviewsComponent implements OnInit {
   ngOnInit(): void {
 
     // this.order = this.ordersSvc.getOrderById(this.orderId());
-   
+
     this.ordersSvc.getOrderById(this.orderId()).subscribe((res: any) => {
       // this.service.getUsuario(id).subscribe(res => {
       // console.log(res)  
@@ -112,7 +114,10 @@ export default class PreviewsComponent implements OnInit {
   // handleUpdates(payload: any): void {
   handleUpdates(payload: any) {
     // this.production.set(payload.new);
-    this.order.set(payload.new);
+
+    //setear valor sólo si hay cambio de estado.
+    if (this.order()?.order_state != payload.new.order_state)
+      this.order.set(payload.new);
     // this.order = payload.new;
 
     // this.order = this.ordersSvc.getOrderById(this.orderId());
