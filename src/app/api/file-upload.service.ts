@@ -24,9 +24,6 @@ export class FileUploadService {
                 upsert: false
             })
 
-            console.log('entro a service')
-            console.log(data)
-
         if (data) console.log(data)
         if (error) console.log(error)
 

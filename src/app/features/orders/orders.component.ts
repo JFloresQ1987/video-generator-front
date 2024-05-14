@@ -16,20 +16,21 @@ import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
   selector: 'app-orders',
   standalone: true,
   imports: [SafePipe, ReactiveFormsModule, CommonModule, RecaptchaModule, RecaptchaFormsModule],
-  templateUrl: './orders.component.html'
+  templateUrl: './orders.component.html',
+  styleUrl: './orders.component.css',
 })
 export default class OrdersComponent {
 
   modelId = input<string>('', { alias: 'id' });
   myForm: FormGroup;
 
-  
 
-  fileFirst?: File;
-  fileSecond?: File;
-  fileThird?: File;
-  fileFourth?: File;
-  fileFifth?: File;
+
+  fileFirst?: File | null;
+  fileSecond?: File | null;
+  fileThird?: File | null;
+  fileFourth?: File | null;
+  fileFifth?: File | null;
 
   entity_blank: Model = {
     id: '',
@@ -62,17 +63,16 @@ export default class OrdersComponent {
   constructor(private fb: FormBuilder,
     private uploadService: FileUploadService,
     private router: Router) {
-    
-  //   public reactiveForm: FormGroup = new FormGroup({
-  //   recaptchaReactive: new FormControl(null, Validators.required),
-  // });
 
-  // recaptchaReactive: new FormControl(null, Validators.required),
-    
-      this.myForm = this.fb.group({
+    //   public reactiveForm: FormGroup = new FormGroup({
+    //   recaptchaReactive: new FormControl(null, Validators.required),
+    // });
+
+    // recaptchaReactive: new FormControl(null, Validators.required),
+
+    this.myForm = this.fb.group({
       recaptchaReactive: new FormControl(null, Validators.required),
-      // recaptchaReactive: '',
-      // recaptchaReactive: [null, [Validators.required]],
+
       first_message: ['', [Validators.maxLength(20)]],
       second_message: ['', [Validators.maxLength(20)]],
       third_message: ['', [Validators.maxLength(20)]],
@@ -88,6 +88,8 @@ export default class OrdersComponent {
       thirteenth_message: ['', [Validators.maxLength(20)]],
       fourteenth_message: ['', [Validators.maxLength(20)]],
       fifteenth_message: ['', [Validators.maxLength(20)]],
+
+      first_image: new FormControl(null, Validators.required),
     });
 
     //TODO: llamado a sincronización de data para saber si ya se renderizo video    
@@ -101,15 +103,17 @@ export default class OrdersComponent {
     });
   }
 
-  public captchaResolved : boolean = false;
-  checkCaptcha(captchaResponse : any) {
-    console.log(captchaResponse)
+  public captchaResolved: boolean = false;
+  checkCaptcha(captchaResponse: any) {
+    // console.log(captchaResponse)
     this.captchaResolved = (captchaResponse && captchaResponse.length > 0) ? true : false
-}
+  }
 
   async createOrder() {
 
     this.submitted = true;
+    this.messageType = false;
+    this.messageSize = false;
 
     if (this.myForm.invalid) {
       console.log('entro')
@@ -170,7 +174,7 @@ export default class OrdersComponent {
 
     // console.log('Form values:', entity);
 
-     return;
+    return;
 
     this.ordersSvc.crear(entity).subscribe((res: any) => {
       // this.analistaService.crear(this.form.value).subscribe(res => {
@@ -197,8 +201,99 @@ export default class OrdersComponent {
     })
   }
 
+  currentFile?: File;
+  // message = '';
+  preview = '';
+
   selectFirstFile(event: any): void {
-    this.fileFirst = event.target.files.item(0);
+    // this.fileFirst = event.target.files.item(0);
+
+    // this.selectFirstFileHelp(event);
+    this.selectFirstFileHelp(event.target.files);
+  }
+
+  messageType: boolean = false;
+  messageSize: boolean = false;
+
+  // selectFirstFileHelp(event: any): void {
+  selectFirstFileHelp(files: any): void {
+    // this.fileFirst = event.target.files.item(0);
+
+    // this.message = '';
+    this.preview = '';
+    // const selectedFiles = event.target.files;
+    const selectedFiles = files;
+
+    if (selectedFiles) {
+      const file: File | null = selectedFiles.item(0);
+
+      if (file) {
+
+        /* */
+        // this.selectedFile = event.target.files[0];
+        const type = file.type;
+        const size = file.size;
+        if (
+          // type != "application/pdf" &&
+          type != "image/png" &&
+          type != "image/jpg" &&
+          type != "image/jpeg" &&
+          type != "image/gif"
+
+        ) {
+          // this.siagieUtilsService.error({
+          //   message:
+          //     "No es posible cargar el archivo seleccionado, debe seleccionar un archivo con extensión .pdf, .jpg o .png",
+          //   button: { text: "CERRAR" },
+          // });
+          this.messageType = true;
+          this.changeFirstImage();
+          //       this.preview = '';
+          // this.cssisDragOver = false;
+          // this.myForm.get('first_image')?.setValue(null);
+          return;
+        } else if (size > 2097152) {//<--2MB
+
+          this.messageSize = true;
+          this.changeFirstImage();
+          return;
+          // this.siagieUtilsService.error({
+          //   message: "El archivo seleccionado supera los 2MB",
+          //   button: { text: "CERRAR" },
+          // });
+          // return false;
+        } /*else {
+        item.archivoBase64ContentType = type;
+        this.onUpload(item);
+      }*/
+        /* */
+
+        this.fileFirst = file;
+
+        this.preview = '';
+        this.currentFile = file;
+
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          // console.log(e.target.result);
+          this.preview = e.target.result;
+        };
+
+        reader.readAsDataURL(this.currentFile);
+      }
+    }
+  }
+
+  changeFirstImage() {
+    this.preview = '';
+    this.cssisDragOver = false;
+    this.myForm.get('first_image')?.setValue(null);
+
+    // console.log(this.formControlIsInitial('first_image'))
+    // console.log(this.formControlIsValid('first_image'))
+    // console.log((this.formControlIsInitial('first_image') || this.formControlIsValid('first_image')))
+    // this.myForm.get('fifteenth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
   }
 
   selectSecondFile(event: any): void {
@@ -269,18 +364,27 @@ export default class OrdersComponent {
 
   formControlIsInitial(formControl: string): boolean {
 
+    // console.log('formControlIsInitial')    
+    // console.log(this.submitted)
+    // console.log(this.myForm.get(formControl)?.touched)
+
     if (this.submitted || this.myForm.get(formControl)?.touched)
       return false;
-    else      
+    else
       return true;
   }
 
   formControlIsValid(formControl: string): boolean {
 
+    // console.log('formControlIsValid')
+    // console.log(this.myForm.get(formControl)?.valid)
+    // console.log(this.submitted)
+    // console.log(this.myForm.get(formControl)?.touched)
+
     if (this.myForm.get(formControl)?.valid &&
       (this.submitted || this.myForm.get(formControl)?.touched))
       return true;
-    else      
+    else
       return false;
   }
 
@@ -301,4 +405,55 @@ export default class OrdersComponent {
   //   this.submitted = false;
   //   this.myForm.reset();
   // }
+
+  onDrop(event: DragEvent): void {
+
+    event.preventDefault();
+    if (event?.dataTransfer?.files) {
+
+      this.selectFirstFileHelp(event.dataTransfer.files);
+    }
+  }
+
+  cssisDragOver: boolean = false;
+
+  onDragOver(event: DragEvent): void {
+
+    event.preventDefault();
+    this.cssisDragOver = true;
+  }
+
+  onDragLeave(event: DragEvent): void {
+
+    event.preventDefault();
+    this.cssisDragOver = false;
+    // this.cssisDragOver=false;
+
+    // console.log(this.cssisDragOver)
+    // console.log('entro a onDragOver')
+
+    // event.preventDefault();
+    // if(event.target.dataset.effect)
+    // event.dataTransfer.dropEffect = event.target.dataset.effect;
+    // let ul = event.target.closest('ul.drop');
+    // if (ul) ul.classList.add('over');
+  }
+
+
+
+  // cssisDragOver:boolean=false;
+
+  // document.querySelector('.droplists').addEventListener('dragover', e => {
+  //   e.preventDefault();
+  //   if(e.target.dataset.effect)
+  //     e.dataTransfer.dropEffect = e.target.dataset.effect;
+  //   let ul = e.target.closest('ul.drop');
+  //   if (ul) ul.classList.add('over');
+  // });
+
+  // document.querySelector('.droplists').addEventListener('dragleave', e => {
+  //   e.preventDefault();
+  //   let ul = e.target.closest('ul.drop');
+  //   if (ul) ul.classList.remove('over');
+  // });
 }
