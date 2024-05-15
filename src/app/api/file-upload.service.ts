@@ -1,43 +1,73 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { supabase } from 'app/libs/supabase';
+import { environment } from '@envs/environment';
 
 @Injectable({
     providedIn: 'root',
 })
 export class FileUploadService {
     private baseUrl = 'http://localhost:8080';
+
+    private readonly _http = inject(HttpClient);
+    private readonly _endPoint = environment.apiURL;
+
     constructor(private http: HttpClient) { }
 
-    // upload(file: File): Promise<Observable<HttpEvent<any>>> {
-    async upload(file: File): Promise<any> {
+    // upload(file: File): Promise<Observable<HttpEvent<any>>> {        
+    // async upload(file: File) {        
+    upload(file: File) {
 
-        // const avatarFile = event.target.files[0]
-        const imageFile = file
-        const imageName = `${(new Date()).getTime()}`
-        const { data, error } = await supabase
-            .storage
-            .from('test-bucket')
-            .upload(`${imageName}.png`, imageFile, {
-                cacheControl: '3600',
-                upsert: false
-            })
+        // // const avatarFile = event.target.files[0]
+        // const imageFile = file
 
-        if (data) console.log(data)
-        if (error) console.log(error)
+        // console.log('entroo image')
+        //         console.log(imageFile)
 
-        return data?.path;
+        // const imageName = `${(new Date()).getTime()}`
+        // const { data, error } = await supabase
+        //     .storage
+        //     .from('images')
+        //     .upload(`${imageName}.png`, imageFile, {
+        //         cacheControl: '3600',
+        //         upsert: false
+        //     })
+
+        // if (data) console.log(data)
+        // if (error) console.log(error)
+
+        // return data?.path;
 
 
 
-        // const formData: FormData = new FormData();
+        const formData: FormData = new FormData();
 
-        // formData.append('file', file);
+        formData.append('file', file);
 
-        // const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
+        const url = `${this._endPoint}/orders/images`;
+        return this._http.post(url, formData);
+
+        // // console.log('entrooo', file)
+
+        // const resp = await fetch(url, {
+        //     method: 'POST',
+        //     body: formData
+        // })
+
+        // // const data = await resp.json();
+        // return await resp.json();
+
+
+
+
+        // //api/orders/images
+        // const req = new HttpRequest('POST', `${this._endPoint}/orders/images`, formData, {
+        // // const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
         //   responseType: 'json',
         // });
+
+        // console.log(this.http.request(req))
 
         // return this.http.request(req);
     }

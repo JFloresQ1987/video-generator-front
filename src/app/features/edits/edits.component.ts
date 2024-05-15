@@ -68,25 +68,25 @@ export default class EditsComponent {
     // const images: Images = {};
     const messages: Messages = { ...this.myForm.value };
 
-    if (this.fileFirst) {
-      images.first_image = await this.uploadService.upload(this.fileFirst);
-    }
+    // if (this.fileFirst) {
+    //   images.first_image = await this.uploadService.upload(this.fileFirst);
+    // }
 
-    if (this.fileSecond) {
-      images.second_image = await this.uploadService.upload(this.fileSecond);
-    }
+    // if (this.fileSecond) {
+    //   images.second_image = await this.uploadService.upload(this.fileSecond);
+    // }
 
-    if (this.fileThird) {
-      images.third_image = await this.uploadService.upload(this.fileThird);
-    }
+    // if (this.fileThird) {
+    //   images.third_image = await this.uploadService.upload(this.fileThird);
+    // }
 
-    if (this.fileFourth) {
-      images.fourth_image = await this.uploadService.upload(this.fileFourth);
-    }
+    // if (this.fileFourth) {
+    //   images.fourth_image = await this.uploadService.upload(this.fileFourth);
+    // }
 
-    if (this.fileFifth) {
-      images.fifth_image = await this.uploadService.upload(this.fileFifth);
-    }
+    // if (this.fileFifth) {
+    //   images.fifth_image = await this.uploadService.upload(this.fileFifth);
+    // }
 
     const entity: Order = {
       // id: 'f19133e0-d2ae-4ffd-9f76-b3de859162b1',

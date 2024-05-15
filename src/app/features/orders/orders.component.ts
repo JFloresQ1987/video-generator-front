@@ -89,7 +89,9 @@ export default class OrdersComponent {
       fourteenth_message: ['', [Validators.maxLength(20)]],
       fifteenth_message: ['', [Validators.maxLength(20)]],
 
-      first_image: new FormControl(null, Validators.required),
+      // first_image: new FormControl(null, Validators.required),
+      first_image: ['', []],
+      // first_image: new FormControl(null),
     });
 
     //TODO: llamado a sincronización de data para saber si ya se renderizo video    
@@ -114,6 +116,8 @@ export default class OrdersComponent {
     this.submitted = true;
     this.messageType = false;
     this.messageSize = false;
+
+    console.log(this.myForm)
 
     if (this.myForm.invalid) {
       console.log('entro')
@@ -147,20 +151,60 @@ export default class OrdersComponent {
     // const images: Images = {};
     const messages: Messages = { ...this.myForm.value };
 
-    if (this.fileFirst)
-      images.first_image = await this.uploadService.upload(this.fileFirst);
+    if (this.fileFirst) {
+      // images.first_image = await this.uploadService.upload(this.fileFirst);
 
-    if (this.fileSecond)
-      images.second_image = await this.uploadService.upload(this.fileSecond);
+      this.uploadService.upload(this.fileFirst).subscribe((res: any) => {
 
-    if (this.fileThird)
-      images.third_image = await this.uploadService.upload(this.fileThird);
+        //TODO: Mejorar respuesta y manejo de errores
+        if (res.ok) {
+          const data = res.data;
+          images.first_image = data.path;
+          // this.myForm.get('first_image')?.setValue(data.path);
+        }
+      })
 
-    if (this.fileFourth)
-      images.fourth_image = await this.uploadService.upload(this.fileFourth);
 
-    if (this.fileFifth)
-      images.fifth_image = await this.uploadService.upload(this.fileFifth);
+
+      // const data = await this.uploadService.upload(this.fileFirst).subscribe((res: any) => {
+      //   // this.analistaService.crear(this.form.value).subscribe(res => {
+
+      //   // console.log(res);
+      //   //TODO: Mejorar respuesta y manejo de errores
+      //   if (res.ok) {
+      //     this.toastSvc.success('El orden de pedido fue creada!', 'Info');
+      //     this.router.navigateByUrl(`/previews/${res.data.id}`);
+      //     // this.progress = 'width: 10%';
+      //   }
+
+      //   // this.formSubmitted = false;
+      //   // if (res['ok']) {
+      //   //   Swal.fire({
+      //   //     text: res['msg'], icon: 'success'
+      //   //   });
+      //   //   this.router.navigateByUrl('seguridad/gestion/analista');
+      //   // } else {
+      //   //   Swal.fire({
+      //   //     text: res['msg'], icon: 'error'
+      //   //   });
+      //   // }
+      // });
+      // images.first_image = data.path;
+      // console.log(data)
+      // console.log(images.first_image)
+    }
+
+    // if (this.fileSecond)
+    // images.second_image = await this.uploadService.upload(this.fileSecond);
+
+    // if (this.fileThird)
+    // images.third_image = await this.uploadService.upload(this.fileThird);
+
+    // if (this.fileFourth)
+    // images.fourth_image = await this.uploadService.upload(this.fileFourth);
+
+    // if (this.fileFifth)
+    // images.fifth_image = await this.uploadService.upload(this.fileFifth);
 
     const entity: NewOrder = {
       model_id: this.model()?.id,
@@ -172,9 +216,9 @@ export default class OrdersComponent {
       video_rendered_url: '',
     };
 
-    // console.log('Form values:', entity);
+    console.log('Form values:', entity);
 
-    return;
+    // return;
 
     this.ordersSvc.crear(entity).subscribe((res: any) => {
       // this.analistaService.crear(this.form.value).subscribe(res => {
@@ -281,6 +325,10 @@ export default class OrdersComponent {
         };
 
         reader.readAsDataURL(this.currentFile);
+
+        const name = file.name;
+        console.log(name)
+        this.myForm.get('first_image')?.setValue(name);
       }
     }
   }
@@ -288,7 +336,8 @@ export default class OrdersComponent {
   changeFirstImage() {
     this.preview = '';
     this.cssisDragOver = false;
-    this.myForm.get('first_image')?.setValue(null);
+    this.myForm.get('first_image')?.setValue('');
+    // this.myForm.get('first_image')?.setValue(data.path);
 
     // console.log(this.formControlIsInitial('first_image'))
     // console.log(this.formControlIsValid('first_image'))
@@ -358,6 +407,9 @@ export default class OrdersComponent {
 
     if ((this.model().total_messages || 0) >= 15)
       this.myForm.get('fifteenth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+
+    if ((this.model().total_images || 0) >= 1)
+      this.myForm.get('first_image')?.setValidators([Validators.required]);
   }
 
   submitted = false;
