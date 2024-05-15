@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { supabase } from 'app/libs/supabase';
+import { supabase } from '@shared/libs/supabase';
 import { environment } from '@envs/environment';
 
 @Injectable({

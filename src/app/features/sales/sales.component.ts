@@ -1,15 +1,15 @@
 import { Component, inject, input, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { OrdersService } from '@api/orders.service';
 import { CheckoutService } from '@api/checkout.service';
 import { Order } from '@shared/models/order.interface';
-import { SafePipe } from 'app/common/pipe/safe.pipe';
-import { supabaseAdmin } from 'app/libs/supabase';
+import { SafePipe } from '@shared/pipes/safe.pipe';
+import { supabaseAdmin } from '@shared/libs/supabase';
 // import { Resend } from 'resend';
 
 @Component({
   selector: 'app-sales',
-  standalone: true,  
+  standalone: true,
   imports: [SafePipe, RouterLink],
   templateUrl: './sales.component.html'
 })
@@ -38,6 +38,8 @@ export default class SalesComponent {
   orderId = input<string>('', { alias: 'id' });
 
   private readonly ordersSvc = inject(OrdersService);
+
+  constructor(private router: Router) { }
   // private readonly _checkoutSvc = inject(CheckoutService);
 
   // state_222: any
@@ -55,7 +57,24 @@ export default class SalesComponent {
     this.ordersSvc.getOrderById(this.orderId()).subscribe((res: any) => {
       // this.service.getUsuario(id).subscribe(res => {
       // console.log(res)  
-      this.order.set(res);
+      if (res) {
+
+        // if (res.order_state == "produced" || res.order_state == "edited") {
+        if (res.payment_state == "paid") {
+          this.order.set(res);
+        } else {
+          //TODO: tal vez mostrar página con aviso de error, porque no fue pagado
+          // this.router.navigateByUrl('/previews/');
+          this.router.navigateByUrl(`/previews/${res.id}`);
+          // this.router.navigateByUrl(`/previews/${res.data.id}`);
+        }
+      }
+      else {
+        //TODO: tal vez mostrar página con aviso de error
+        this.router.navigateByUrl('/categories');
+      }
+
+
       // console.log(res['usuario'])
 
     });

@@ -29,6 +29,9 @@ export default class ProductsComponent {
   products!: Signal<Product[] | undefined>;
 
   ngOnInit(): void {
+    
+    // console.log('entrooo')
+    // console.log(this.categoryId())
     this.products = this.productsSvc.getProductsByCategory(this.categoryId());
   }
 }

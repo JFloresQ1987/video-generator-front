@@ -1,7 +1,7 @@
 import { Component, inject, input, signal } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Images, Messages, NewOrder } from '@shared/models/order.interface';
-import { SafePipe } from 'app/common/pipe/safe.pipe';
+import { SafePipe } from '@shared/pipes/safe.pipe';
 import { OrdersService } from '@api/orders.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -100,8 +100,15 @@ export default class OrdersComponent {
   ngOnInit(): void {
 
     this.modelsSvc.getModelById(this.modelId()).subscribe((res: any) => {
-      this.model.set(res);
-      this.validar();
+
+      if (res) {
+        this.model.set(res);
+        this.validar();
+      }
+      else {
+        //TODO: tal vez mostrar página con aviso de error
+        this.router.navigateByUrl('/categories');
+      }
     });
   }
 

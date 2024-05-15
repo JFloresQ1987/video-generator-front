@@ -1,8 +1,10 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FileUploadService } from '@api/file-upload.service';
+import { ModelsService } from '@api/models.service';
 import { OrdersService } from '@api/orders.service';
+import { Model } from '@shared/models/model.interface';
 // import { FileUploadComponent } from '@shared/components/file-upload/file-upload.component';
 import { Images, Messages, Order } from '@shared/models/order.interface';
 import { ToastrService } from 'ngx-toastr';
@@ -23,12 +25,50 @@ export default class EditsComponent {
   fileFourth?: File;
   fileFifth?: File;
 
-  // private readonly _checkoutSvc = inject(CheckoutService);
+
+  entity_blank: Order = {
+    id: '',
+    // tematic: '',
+    order_state: '',
+    payment_state: '',
+    // state_payment: 0,
+    // path: '',
+    model_id: '',
+    model_composition: '',
+    model_price: 0,
+    // messages: null,
+    // images: null,
+    video_rendered_url: '',
+    video_rendered_url_with_watermark: '',
+  };
+  order = signal<Order | undefined>(this.entity_blank);
+  // entity_blank: Model = {
+  //   id: '',
+  //   title: '',
+  //   price: 0,
+  //   category_title: '',
+  //   description: '',
+  //   image: '',
+  //   video: '',
+  //   rating: {
+  //     rate: 0,
+  //     count: 0,
+  //   },
+  //   qty: 0,
+  //   subTotal: 0,
+  //   composition: '',
+  //   total_messages: 0,
+  //   total_images: 0,
+  // };
+
+  // model = signal<Model>(this.entity_blank);
+  // // private readonly _checkoutSvc = inject(CheckoutService);
+  // private readonly modelsSvc = inject(ModelsService);
   private readonly ordersSvc = inject(OrdersService);
   private readonly toastSvc = inject(ToastrService)
 
   orderId = input<string>('', { alias: 'id' });
-  
+
   constructor(private fb: FormBuilder,
     private uploadService: FileUploadService,
     private router: Router) {
@@ -55,8 +95,50 @@ export default class EditsComponent {
     // this.getTableChanges();
   }
 
+  ngOnInit(): void {
+
+    // this.modelsSvc.getModelById(this.modelId()).subscribe((res: any) => {
+
+    //   if (res) {
+    //     this.model.set(res);
+    //     this.validar();
+    //   }
+    //   else {
+    //     //TODO: tal vez mostrar página con aviso de error
+    //     this.router.navigateByUrl('/categories');
+    //   }
+    // });
+
+    // this.order = this.ordersSvc.getOrderById(this.orderId());
+
+    this.ordersSvc.getOrderById(this.orderId()).subscribe((res: any) => {
+      // this.service.getUsuario(id).subscribe(res => {
+      // console.log(res)  
+      if (res) {
+
+        // if (res.order_state == "produced" || res.order_state == "edited") {
+        if (res.payment_state == "paid") {
+          this.order.set(res);
+        } else {
+          //TODO: tal vez mostrar página con aviso de error, porque no fue pagado
+          // this.router.navigateByUrl('/previews/');
+          this.router.navigateByUrl(`/previews/${res.id}`);
+          // this.router.navigateByUrl(`/previews/${res.data.id}`);
+        }
+      }
+      else {
+        //TODO: tal vez mostrar página con aviso de error
+        this.router.navigateByUrl('/categories');
+      }
+
+
+      // console.log(res['usuario'])
+
+    });
+  }
+
   async createOrder() {
-    
+
     const images: Images = {
       first_image: null,
       second_image: null,
@@ -113,7 +195,7 @@ export default class EditsComponent {
         this.toastSvc.success('El orden de pedido fue creada!');
         // this.router.navigateByUrl(`/sales/${res.data.id}`);
         this.router.navigateByUrl(`/sales/${this.orderId()}`);
-        
+
         // this.progress = 'width: 10%';
       }
 

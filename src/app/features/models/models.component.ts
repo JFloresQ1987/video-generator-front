@@ -4,7 +4,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { ModelsService } from '@api/models.service';
 import { Model } from '@shared/models/model.interface';
-import { SafePipe } from 'app/common/pipe/safe.pipe';
+import { SafePipe } from '@shared/pipes/safe.pipe';
 
 @Component({
   selector: 'app-models',
@@ -21,8 +21,8 @@ export default class ModelsComponent implements OnInit {
   models!: Signal<Model[] | undefined>;
 
   ngOnInit(): void {
-
-    this.models = this.modelsSvc.getModelsByProduct(this.productId());
+    
+    this.models = this.modelsSvc.getModelsByProduct(this.productId());    
   }
 
   generateSVG(index: number): SafeHtml {

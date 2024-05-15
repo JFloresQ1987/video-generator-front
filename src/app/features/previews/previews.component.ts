@@ -8,8 +8,9 @@ import { Model } from '@shared/models/model.interface';
 import { Order } from '@shared/models/order.interface';
 import { Product, ProductCheckout } from '@shared/models/product.interface';
 import { SpinnerService } from '@shared/services/spinner.service';
-import { SafePipe } from 'app/common/pipe/safe.pipe';
-import { supabaseAdmin } from 'app/libs/supabase';
+import { SafePipe } from '@shared/pipes/safe.pipe';
+import { supabaseAdmin } from '@shared/libs/supabase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-previews',
@@ -43,6 +44,8 @@ export default class PreviewsComponent implements OnInit {
 
   private readonly ordersSvc = inject(OrdersService);
   private readonly _checkoutSvc = inject(CheckoutService);
+
+  constructor(private router: Router) { }
 
   // entity_blank: Order = {
   //   // id: '',
@@ -88,8 +91,14 @@ export default class PreviewsComponent implements OnInit {
 
     this.ordersSvc.getOrderById(this.orderId()).subscribe((res: any) => {
       // this.service.getUsuario(id).subscribe(res => {
-      // console.log(res)  
-      this.order.set(res);
+      // console.log('res', res)
+      if (res) {
+        this.order.set(res);
+      }
+      else {
+        //TODO: tal vez mostrar página con aviso de error
+        this.router.navigateByUrl('/categories');
+      }
       // console.log(res['usuario'])
 
     });
