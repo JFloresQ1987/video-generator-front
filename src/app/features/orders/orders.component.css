@@ -2,21 +2,3 @@
     max-width: 200px;
     max-height: 200px;
 }
-
-.drag-drop-area {
-    /* border: 2px dashed #ccc;
-    padding: 40px;
-    text-align: center;
-    cursor: pointer; */
-    /* background-color: yellow; */
-}
-
-.drag-drop-area p {
-    /* margin: 0; */
-}
-
-.drag-drop-area:hover {
-    /* background-color: #E5E7EB; */
-    /* background-color: blue; */
-}
-

@@ -89,12 +89,12 @@ export default class OrdersComponent {
       fourteenth_message: ['', [Validators.maxLength(20)]],
       fifteenth_message: ['', [Validators.maxLength(20)]],
 
-      // first_image: new FormControl(null, Validators.required),
       first_image: ['', []],
-      // first_image: new FormControl(null),
+      second_image: ['', []],
+      third_image: ['', []],
+      fourth_image: ['', []],
+      fifth_image: ['', []],
     });
-
-    //TODO: llamado a sincronización de data para saber si ya se renderizo video    
   }
 
   ngOnInit(): void {
@@ -114,7 +114,6 @@ export default class OrdersComponent {
 
   public captchaResolved: boolean = false;
   checkCaptcha(captchaResponse: any) {
-    // console.log(captchaResponse)
     this.captchaResolved = (captchaResponse && captchaResponse.length > 0) ? true : false
   }
 

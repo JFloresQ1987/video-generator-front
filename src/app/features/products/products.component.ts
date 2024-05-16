@@ -28,10 +28,8 @@ export default class ProductsComponent {
   categoryId = input<string>('', { alias: 'id' });
   products!: Signal<Product[] | undefined>;
 
-  ngOnInit(): void {
-    
-    // console.log('entrooo')
-    // console.log(this.categoryId())
+  ngOnInit(): void {    
+
     this.products = this.productsSvc.getProductsByCategory(this.categoryId());
   }
 }
