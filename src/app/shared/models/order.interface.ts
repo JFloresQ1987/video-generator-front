@@ -28,7 +28,8 @@ export interface Order {
   id: string;
   // tematic: string;
   order_state: string;
-  payment_state: string
+  payment_state: string;
+  payment_attempt_number: number;
   // state_payment: number;
   // path: string;    
   model_id: string;

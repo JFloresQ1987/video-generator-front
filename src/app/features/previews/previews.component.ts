@@ -30,6 +30,7 @@ export default class PreviewsComponent implements OnInit {
     // tematic: '',
     order_state: '',
     payment_state: '',
+    payment_attempt_number: 0,
     // state_payment: 0,
     // path: '',
     model_id: '',

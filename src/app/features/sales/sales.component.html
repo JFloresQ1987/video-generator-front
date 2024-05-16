@@ -38,10 +38,13 @@
                         </p>
                         <div class="flex">
                             <span class="text-2xl text-gray-900 title-font">Descargalo ahora!</span>
+                            @if((order()?.payment_attempt_number || 0) > 0)
+                            {
                             <button [routerLink]="['/edits', orderId()]"
                                 class="px-2 py-1 ml-auto text-white bg-orange-500 rounded hover:bg-orange-700">
                                 Volver a Editar Invitación
                             </button>
+                            }
                         </div>
                     </div>
                 </div>

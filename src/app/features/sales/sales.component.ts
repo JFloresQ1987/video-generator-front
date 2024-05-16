@@ -20,6 +20,7 @@ export default class SalesComponent {
     id: '',
     order_state: '',
     payment_state: '',
+    payment_attempt_number: 0,
     model_id: '',
     model_composition: '',
     model_price: 0,

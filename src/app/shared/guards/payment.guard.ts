@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { OrdersService } from '@api/orders.service';
+import moment from 'moment';
 
 @Injectable({
     providedIn: 'root'
@@ -19,8 +20,12 @@ export class PaymentGuard implements CanActivate {
         this.ordersSvc.getOrderById(orderId).subscribe((res: any) => {
 
             if (res) {
-                
-                if (res.payment_state == "paid") {
+
+                const fecha_max = moment(res.payment_access_until);
+                const fecha_hoy = moment();
+                const minutes = fecha_max.diff(fecha_hoy, 'minutes');
+
+                if (res.payment_state == "paid" && minutes > 0) {
                     //TODO: validar fecha de expiración
                     return true;
                 } else {
