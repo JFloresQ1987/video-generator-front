@@ -10,7 +10,8 @@ import { supabaseAdmin } from '@shared/libs/supabase';
   selector: 'app-sales',
   standalone: true,
   imports: [SafePipe, RouterLink],
-  templateUrl: './sales.component.html'
+  templateUrl: './sales.component.html',
+  styleUrl: './sales.component.css',
 })
 export default class SalesComponent {
   
@@ -23,6 +24,8 @@ export default class SalesComponent {
     payment_attempt_number: 0,
     model_id: '',
     model_composition: '',
+    model_title: '',
+    model_image: '',
     model_price: 0,
     video_rendered_url: '',
     video_rendered_url_with_watermark: '',

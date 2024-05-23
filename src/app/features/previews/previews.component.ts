@@ -16,7 +16,8 @@ import { Router } from '@angular/router';
   selector: 'app-previews',
   standalone: true,
   imports: [CurrencyPipe, SafePipe],
-  templateUrl: './previews.component.html'
+  templateUrl: './previews.component.html',
+  styleUrl: './previews.component.css',
 })
 export default class PreviewsComponent implements OnInit {
 
@@ -35,6 +36,8 @@ export default class PreviewsComponent implements OnInit {
     // path: '',
     model_id: '',
     model_composition: '',
+    model_title: '',
+    model_image: '',
     model_price: 0,
     // messages: null,
     // images: null,
@@ -135,12 +138,15 @@ export default class PreviewsComponent implements OnInit {
 
   onProceedToPay(): void {
 
+    console.log(this.order()?.model_title);
+    console.log(this.order()?.model_image);
+
     const id = this.orderId();
     const items: ProductCheckout[] = [{
-      // title: this.order()?.title,
-      // image: this.order()?.image,
-      title: "Bob Esponja 1",
-      image: "https://blijhwisxhocmojszgoy.supabase.co/storage/v1/object/sign/images-products/bob-esponja.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMtcHJvZHVjdHMvYm9iLWVzcG9uamEuanBnIiwiaWF0IjoxNzE0NzA4MjU0LCJleHAiOjE3MTUzMTMwNTR9.a8OJ031qLLmn7Bk8Sc2LpAIipn4se6UwJa95UPA2gEE&t=2024-05-03T03%3A50%3A51.020Z",
+      title: this.order()?.model_title,
+      image: this.order()?.model_image,
+      // title: "Bob Esponja 1",
+      // image: "https://blijhwisxhocmojszgoy.supabase.co/storage/v1/object/sign/images-products/bob-esponja.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMtcHJvZHVjdHMvYm9iLWVzcG9uamEuanBnIiwiaWF0IjoxNzE0NzA4MjU0LCJleHAiOjE3MTUzMTMwNTR9.a8OJ031qLLmn7Bk8Sc2LpAIipn4se6UwJa95UPA2gEE&t=2024-05-03T03%3A50%3A51.020Z",
       price: this.order()?.model_price,
     }]
 

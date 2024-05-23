@@ -34,6 +34,8 @@ export interface Order {
   // path: string;    
   model_id: string;
   model_composition: string;
+  model_title: string;
+  model_image: string;
   model_price: number;
   messages?: Messages | undefined;
   images?: Images | undefined;
@@ -45,10 +47,13 @@ export interface NewOrder {
   // id: string;
   // tematic: string;
   order_state?: string;
+  // payment_access_until: Date;
   // state_payment: number;
   // path: string;    
   model_id?: string;
   model_composition?: string;
+  model_title: string;
+  model_image: string;
   model_price?: number;
   messages?: Messages | undefined;
   images?: Images | undefined;

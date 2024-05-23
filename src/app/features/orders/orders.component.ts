@@ -11,6 +11,7 @@ import { FileUploadService } from '@api/file-upload.service';
 import { CommonModule } from '@angular/common';
 import { CaptchaComponent } from '@shared/components/captcha/captcha.component';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+// import moment from 'moment';
 
 @Component({
   selector: 'app-orders',
@@ -78,7 +79,7 @@ export default class OrdersComponent {
       third_message: ['', [Validators.maxLength(20)]],
       fourth_message: ['', [Validators.maxLength(20)]],
       fifth_message: ['', [Validators.maxLength(20)]],
-      sixth_message: ['', [Validators.maxLength(20)]],
+      sixth_message: ['', [Validators.maxLength(30)]],
       seventh_message: ['', [Validators.maxLength(20)]],
       eighth_message: ['', [Validators.maxLength(20)]],
       nineth_message: ['', [Validators.maxLength(20)]],
@@ -212,11 +213,21 @@ export default class OrdersComponent {
     // if (this.fileFifth)
     // images.fifth_image = await this.uploadService.upload(this.fileFifth);
 
+    
+    // const fecha_hoy = moment();
+    // const fecha_access_until = fecha_hoy.add(7, 'days');
+    // // const minutes = fecha_max.diff(fecha_hoy, 'minutes');
+
+    // console.log('Vence en',fecha_access_until)
+
     const entity: NewOrder = {
       model_id: this.model()?.id,
       model_composition: this.model()?.composition,
+      model_title: this.model()?.title,
+      model_image: this.model()?.image,      
       model_price: this.model()?.price,
       order_state: "created",
+      // payment_access_until: fecha_access_until,
       messages: messages,
       images: images,
       video_rendered_url: '',
@@ -385,7 +396,7 @@ export default class OrdersComponent {
       this.myForm.get('fifth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
 
     if ((this.model().total_messages || 0) >= 6)
-      this.myForm.get('sixth_message')?.setValidators([Validators.maxLength(20), Validators.required]);
+      this.myForm.get('sixth_message')?.setValidators([Validators.maxLength(30), Validators.required]);
 
     if ((this.model().total_messages || 0) >= 7)
       this.myForm.get('seventh_message')?.setValidators([Validators.maxLength(20), Validators.required]);
