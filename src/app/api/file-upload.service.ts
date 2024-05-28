@@ -17,7 +17,7 @@ export class FileUploadService {
 
     // upload(file: File): Promise<Observable<HttpEvent<any>>> {        
     // async upload(file: File) {        
-    upload(file: File) {
+    async upload(file: File) {
 
         // // const avatarFile = event.target.files[0]
         // const imageFile = file
@@ -46,17 +46,17 @@ export class FileUploadService {
         formData.append('file', file);
 
         const url = `${this._endPoint}/orders/images`;
-        return this._http.post(url, formData);
+        // return await this._http.post(url, formData);
 
         // // console.log('entrooo', file)
 
-        // const resp = await fetch(url, {
-        //     method: 'POST',
-        //     body: formData
-        // })
+        const resp = await fetch(url, {
+            method: 'POST',
+            body: formData
+        })
 
         // // const data = await resp.json();
-        // return await resp.json();
+        return await resp.json();
 
 
 

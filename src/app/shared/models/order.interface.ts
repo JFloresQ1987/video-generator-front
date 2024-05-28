@@ -14,6 +14,7 @@ export interface Messages {
   thirteenth_message: string;
   fourteenth_message: string;
   fifteenth_message: string;
+  sixteenth_message: string;
 };
 
 export interface Images {
@@ -22,6 +23,11 @@ export interface Images {
   third_image?: string | null;
   fourth_image?: string | null;
   fifth_image?: string | null;
+  // first_image: string;
+  // second_image: string;
+  // third_image: string;
+  // fourth_image: string;
+  // fifth_image: string;
 };
 
 export interface Order {
@@ -37,6 +43,8 @@ export interface Order {
   model_title: string;
   model_image: string;
   model_price: number;
+  model_total_messages: number;
+  model_total_images: number;
   messages?: Messages | undefined;
   images?: Images | undefined;
   video_rendered_url: string;
@@ -54,10 +62,29 @@ export interface NewOrder {
   model_composition?: string;
   model_title: string;
   model_image: string;
-  model_price?: number;
+  model_price: number;
+  model_total_messages: number;
+  model_total_images: number;
   messages?: Messages | undefined;
   images?: Images | undefined;
   video_rendered_url?: string;
+}
+
+export interface UpdatedOrder {
+  id: string;
+  // tematic: string;
+  // order_state?: string;
+  // // payment_access_until: Date;
+  // // state_payment: number;
+  // // path: string;    
+  // model_id?: string;
+  // model_composition?: string;
+  // model_title: string;
+  // model_image: string;
+  // model_price?: number;
+  messages?: Messages | undefined;
+  images?: Images | undefined;
+  // video_rendered_url?: string;
 }
 
 // export interface Order2 {

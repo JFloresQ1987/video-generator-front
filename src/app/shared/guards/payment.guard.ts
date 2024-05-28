@@ -14,7 +14,12 @@ export class PaymentGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot): boolean {
 
+        // console.log(route.routeConfig?.path)
         const orderId = route.params['id'];
+        const es_path_edits = route.routeConfig?.path?.includes('edits');
+
+        // console.log(route.routeConfig?.path?.includes('edits'));
+
         // console.log('entro a PaymentGuard', orderId);
 
         this.ordersSvc.getOrderById(orderId).subscribe((res: any) => {
@@ -27,6 +32,20 @@ export class PaymentGuard implements CanActivate {
 
                 if (res.payment_state == "paid" && minutes > 0) {
                     //TODO: validar fecha de expiración
+
+                    console.log(es_path_edits)
+                    console.log(res.payment_attempt_number)
+
+                    if (es_path_edits) {
+                        if (res.payment_attempt_number > 0) {
+                            return true;
+                        }
+                        else {
+                            this.router.navigateByUrl(`/sales/${orderId}`);
+                            return false;
+                        }
+                    }
+
                     return true;
                 } else {
                     //TODO: tal vez mostrar página con aviso de error, porque no fue pagado

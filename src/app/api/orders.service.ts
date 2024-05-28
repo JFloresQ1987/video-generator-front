@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { environment } from '@envs/environment';
 import { Model } from '@shared/models/model.interface';
-import { NewOrder, Order } from '@shared/models/order.interface';
+import { NewOrder, Order, UpdatedOrder } from '@shared/models/order.interface';
 
 @Injectable({ providedIn: 'root' })
 export class OrdersService {
@@ -21,11 +21,15 @@ export class OrdersService {
     }
 
     crear(entity: NewOrder) {        
+        
+        console.log('entro a API')
+        console.log(entity)
+        
         const url = `${this._endPoint}/orders`;
         return this._http.post(url, entity);
     }
 
-    editar(entity: Order) {        
+    editar(entity: UpdatedOrder) {        
         const url = `${this._endPoint}/orders`;
         return this._http.put(url, entity);
     }

@@ -14,7 +14,7 @@ import { supabaseAdmin } from '@shared/libs/supabase';
   styleUrl: './sales.component.css',
 })
 export default class SalesComponent {
-  
+
   // private readonly resend = new Resend("re_fDEv2cRc_9hn5Xzmh72v8EBqa4vHw64Le");
 
   entity_blank: Order = {
@@ -27,6 +27,8 @@ export default class SalesComponent {
     model_title: '',
     model_image: '',
     model_price: 0,
+    model_total_messages: 0,
+    model_total_images: 0,
     video_rendered_url: '',
     video_rendered_url_with_watermark: '',
   };
@@ -75,8 +77,12 @@ export default class SalesComponent {
   }
 
   handleUpdates(payload: any) {
-    this.order.set(payload.new);
-  }  
+
+    const data = payload.new;
+    if (data.is_current && !data.is_deleted) {
+      this.order.set(payload.new);
+    }
+  }
 
   //     //       console.log('Entro a enviar correo')
 

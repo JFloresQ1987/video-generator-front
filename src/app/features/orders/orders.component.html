@@ -1,3 +1,5 @@
+@if(!spinnerSvc.isLoading()){
+
 <section class="overflow-hidden text-gray-600 body-font">
     <div class="container px-5 py-5 mx-auto">
 
@@ -9,12 +11,15 @@
                 @if ((model().total_messages || 0) >= 1) {
                 <div class="col-span-3">
                     <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        Mensaje de Bienvenida
+                        Mensaje de Nro 1
                     </label>
                     <label class="block tracking-wide text-gray-700 text-xs mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Usa sinónimos de <span
+                            class="font-bold text-sky-500">"Te
+                            Invito"</span> para hacer tu
+                        invitación única y especial. Sugerencias: "Ven a
+                        Celebrar", "Estás Invitado", "Acompáñanos", "Únete a Nosotros", "Te Esperamos", "Sé Nuestro
+                        Huésped", "Participa", "Celebremos Juntos".
                     </label>
                 </div>
                 <div class="col-span-5 flex flex-wrap -mx-3">
@@ -25,7 +30,8 @@
                         <input
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             type="text" formControlName="first_message"
-                            [ngClass]="(formControlIsInitial('first_message') || formControlIsValid('first_message')) ? 'border-gray-400' : 'border-red-500'">
+                            [ngClass]="(formControlIsInitial('first_message') || formControlIsValid('first_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="Te Invito!">
                         @if (isValid('first_message', 'required')) {
                         <div class="text-xs text-red-500">
                             <div>El Mensaje Nro 1 es obligatorio</div>
@@ -43,12 +49,14 @@
                 @if ((model().total_messages || 0) >= 2) {
                 <div class="col-span-3">
                     <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        Mensaje 2
+                        Mensaje Nro 2
                     </label>
                     <label class="block tracking-wide text-gray-700 text-xs mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Usa sinónimos de <span
+                            class="font-bold text-sky-500">"A Mi
+                            Fiesta"</span> para hacer tu invitación única y especial. Sugerencias: "A Mi Celebración",
+                        "A Mi
+                        Evento", "A Mi Reunión", "A Mi Gala", "A Mi Festín", "A Mi Velada", "A Mi Festejo".
                     </label>
                 </div>
                 <div class="col-span-5 flex flex-wrap -mx-3">
@@ -59,7 +67,8 @@
                         <input
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             type="text" formControlName="second_message"
-                            [ngClass]="(formControlIsInitial('second_message') || formControlIsValid('second_message')) ? 'border-gray-400' : 'border-red-500'">
+                            [ngClass]="(formControlIsInitial('second_message') || formControlIsValid('second_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="A Mi Fiesta">
 
                         @if (isValid('second_message', 'required')) {
                         <div class="text-xs text-red-500">
@@ -80,12 +89,14 @@
                 @if ((model().total_messages || 0) >= 3) {
                 <div class="col-span-3">
                     <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        Mensaje de Bienvenida
+                        Mensaje de Nro 3
                     </label>
                     <label class="block tracking-wide text-gray-700 text-xs mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Ingresa un <span
+                            class="font-bold text-sky-500">"Nombre"</span>,
+                        "Identidad", "Título", "Alias",
+                        "Denominación", "Sobrenombre", "Seudónimo", "Apelativo" para hacer tu invitación única y
+                        especial.
                     </label>
                 </div>
                 <div class="col-span-5 flex flex-wrap -mx-3">
@@ -96,7 +107,8 @@
                         <input
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             type="text" formControlName="third_message"
-                            [ngClass]="(formControlIsInitial('third_message') || formControlIsValid('third_message')) ? 'border-gray-400' : 'border-red-500'">
+                            [ngClass]="(formControlIsInitial('third_message') || formControlIsValid('third_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="Happy Checho">
 
                         @if (isValid('third_message', 'required')) {
                         <div class="text-xs text-red-500">
@@ -117,12 +129,12 @@
                 @if ((model().total_messages || 0) >= 4) {
                 <div class="col-span-3">
                     <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        Mensaje de Bienvenida
+                        Mensaje de Nro 4
                     </label>
                     <label class="block tracking-wide text-gray-700 text-xs mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Usa sinónimos de <span
+                            class="font-bold text-sky-500">"Cumple"</span> para hacer tu invitación única y especial.
+                        Sugerencias: "Cumplo", "Mi", "Mis", "Celebro".
                     </label>
                 </div>
                 <div class="col-span-5 flex flex-wrap -mx-3">
@@ -133,7 +145,8 @@
                         <input
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             type="text" formControlName="fourth_message"
-                            [ngClass]="(formControlIsInitial('fourth_message') || formControlIsValid('fourth_message')) ? 'border-gray-400' : 'border-red-500'">
+                            [ngClass]="(formControlIsInitial('fourth_message') || formControlIsValid('fourth_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="Cumple">
 
                         @if (isValid('fourth_message', 'required')) {
                         <div class="text-xs text-red-500">
@@ -154,12 +167,13 @@
                 @if ((model().total_messages || 0) >= 5) {
                 <div class="col-span-3">
                     <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        Mensaje de Bienvenida
+                        Mensaje de Nro 5
                     </label>
                     <label class="block tracking-wide text-gray-700 text-xs mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Usa
+                        sinónimos de <span class="font-bold text-sky-500">"5"</span> para hacer tu invitación única y
+                        especial. Sugerencias: "Cinco", "5°",
+                        "Quinto", "V".
                     </label>
                 </div>
                 <div class="col-span-5 flex flex-wrap -mx-3">
@@ -170,7 +184,8 @@
                         <input
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             type="text" formControlName="fifth_message"
-                            [ngClass]="(formControlIsInitial('fifth_message') || formControlIsValid('fifth_message')) ? 'border-gray-400' : 'border-red-500'">
+                            [ngClass]="(formControlIsInitial('fifth_message') || formControlIsValid('fifth_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="5">
 
                         @if (isValid('fifth_message', 'required')) {
                         <div class="text-xs text-red-500">
@@ -191,12 +206,14 @@
                 @if ((model().total_messages || 0) >= 6) {
                 <div class="col-span-3">
                     <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        Mensaje de Bienvenida
+                        Mensaje de Nro 6
                     </label>
                     <label class="block tracking-wide text-gray-700 text-xs mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Usa sinónimos de <span
+                            class="font-bold text-sky-500">"Añitos"</span> para hacer tu invitación única y especial.
+                        Sugerencias: "Año", "Añito", "Años"
+                        "Primaveras", "Cumpleaños", "Aniversarios", "Celebraciones", "Tiempos", "Etapas",
+                        "Ciclos".
                     </label>
                 </div>
                 <div class="col-span-5 flex flex-wrap -mx-3">
@@ -207,7 +224,8 @@
                         <input
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             type="text" formControlName="sixth_message"
-                            [ngClass]="(formControlIsInitial('sixth_message') || formControlIsValid('sixth_message')) ? 'border-gray-400' : 'border-red-500'">
+                            [ngClass]="(formControlIsInitial('sixth_message') || formControlIsValid('sixth_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="Añitos">
 
                         @if (isValid('sixth_message', 'required')) {
                         <div class="text-xs text-red-500">
@@ -228,12 +246,14 @@
                 @if ((model().total_messages || 0) >= 7) {
                 <div class="col-span-3">
                     <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        Mensaje de Bienvenida
+                        Mensaje de Nro 7
                     </label>
                     <label class="block tracking-wide text-gray-700 text-xs mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Ingresa un texto de hasta 30 letras para personalizar tu invitación. Usa sinónimos de <span
+                            class="font-bold text-sky-500">"Acompáñanos a Celebrar"</span>
+                        para hacer tu invitación única y especial. Sugerencias: "Celebra este
+                        día con nosotros", "Únete a nuestra gran celebración", "Festeja este gran día", "Acompáñanos en
+                        este día especial", "Ven a celebrar con nosotros", "Participa en nuestra fiesta".
                     </label>
                 </div>
                 <div class="col-span-5 flex flex-wrap -mx-3">
@@ -244,7 +264,8 @@
                         <input
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             type="text" formControlName="seventh_message"
-                            [ngClass]="(formControlIsInitial('seventh_message') || formControlIsValid('seventh_message')) ? 'border-gray-400' : 'border-red-500'">
+                            [ngClass]="(formControlIsInitial('seventh_message') || formControlIsValid('seventh_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="Acompáñanos a Celebrar">
 
                         @if (isValid('seventh_message', 'required')) {
                         <div class="text-xs text-red-500">
@@ -254,7 +275,7 @@
 
                         @if (isValid('seventh_message', 'maxlength')) {
                         <div class="text-xs text-red-500">
-                            <div>El Mensaje Nro 7 debe tener máximo 20 caracteres</div>
+                            <div>El Mensaje Nro 7 debe tener máximo 30 caracteres</div>
                         </div>
                         }
 
@@ -265,12 +286,13 @@
                 @if ((model().total_messages || 0) >= 8) {
                 <div class="col-span-3">
                     <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        Mensaje de Bienvenida
+                        Mensaje de Nro 8
                     </label>
                     <label class="block tracking-wide text-gray-700 text-xs mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Usa sinónimos de <span
+                            class="font-bold text-sky-500">"Fecha"</span>
+                        para hacer tu invitación única y especial. Sugerencias: "Día", "Cita",
+                        "Día especial".
                     </label>
                 </div>
                 <div class="col-span-5 flex flex-wrap -mx-3">
@@ -281,7 +303,8 @@
                         <input
                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             type="text" formControlName="eighth_message"
-                            [ngClass]="(formControlIsInitial('eighth_message') || formControlIsValid('eighth_message')) ? 'border-gray-400' : 'border-red-500'">
+                            [ngClass]="(formControlIsInitial('eighth_message') || formControlIsValid('eighth_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="Fecha:">
 
                         @if (isValid('eighth_message', 'required')) {
                         <div class="text-xs text-red-500">
@@ -299,30 +322,342 @@
                 </div>
                 }
 
-                @if ((model().total_images ?? 0) >= 1) {
+                @if ((model().total_messages || 0) >= 9) {
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Mensaje de Nro 9
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Ingresa una fecha: <span
+                            class="font-bold text-sky-500">"23 de Septiembre"</span> para
+                        hacer tu invitación única y especial. Sugerencias: "23/09", "23/09/24", "23/09/2024".
+                    </label>
+                </div>
+                <div class="col-span-5 flex flex-wrap -mx-3">
+                    <div class="w-full px-3 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                            Mensaje Nro 9
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            type="text" formControlName="nineth_message"
+                            [ngClass]="(formControlIsInitial('nineth_message') || formControlIsValid('nineth_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="23 de Septiembre">
+
+                        @if (isValid('nineth_message', 'required')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 9 es obligatorio</div>
+                        </div>
+                        }
+
+                        @if (isValid('nineth_message', 'maxlength')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 9 debe tener máximo 20 caracteres</div>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+                }
+
+                @if ((model().total_messages || 0) >= 10) {
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Mensaje de Nro 10
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Usa sinónimos de <span
+                            class="font-bold text-sky-500">"Hora"</span>
+                        para hacer tu invitación única y especial. Sugerencias: "Desde las", "A las", "A Partir de las".
+                    </label>
+                </div>
+                <div class="col-span-5 flex flex-wrap -mx-3">
+                    <div class="w-full px-3 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                            Mensaje Nro 10
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            type="text" formControlName="tenth_message"
+                            [ngClass]="(formControlIsInitial('tenth_message') || formControlIsValid('tenth_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="Hora:">
+
+                        @if (isValid('tenth_message', 'required')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 10 es obligatorio</div>
+                        </div>
+                        }
+
+                        @if (isValid('tenth_message', 'maxlength')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 10 debe tener máximo 20 caracteres</div>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+                }
+
+                @if ((model().total_messages || 0) >= 11) {
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Mensaje de Nro 11
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Ingresa una hora: <span
+                            class="font-bold text-sky-500">"5:00 PM"</span> para
+                        hacer tu invitación única y especial. Sugerencias: "05:00 PM", "17:00".
+                    </label>
+                </div>
+                <div class="col-span-5 flex flex-wrap -mx-3">
+                    <div class="w-full px-3 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                            Mensaje Nro 11
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            type="text" formControlName="eleventh_message"
+                            [ngClass]="(formControlIsInitial('eleventh_message') || formControlIsValid('eleventh_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="5:00 PM">
+
+                        @if (isValid('eleventh_message', 'required')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 11 es obligatorio</div>
+                        </div>
+                        }
+
+                        @if (isValid('eleventh_message', 'maxlength')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 11 debe tener máximo 20 caracteres</div>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+                }
+
+                @if ((model().total_messages || 0) >= 12) {
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Mensaje de Nro 12
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Usa sinónimos de <span
+                            class="font-bold text-sky-500">"Dirección"</span> para hacer tu invitación única y especial.
+                        Sugerencias: "Ubicación", "Lugar", "Sitio", "Domicilio", "Residencia", "Destino", "Paradero",
+                        "Punto",
+                        "Localización".
+                    </label>
+                </div>
+                <div class="col-span-5 flex flex-wrap -mx-3">
+                    <div class="w-full px-3 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                            Mensaje Nro 12
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            type="text" formControlName="twelfth_message"
+                            [ngClass]="(formControlIsInitial('twelfth_message') || formControlIsValid('twelfth_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="Dirección:">
+
+                        @if (isValid('twelfth_message', 'required')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 12 es obligatorio</div>
+                        </div>
+                        }
+
+                        @if (isValid('twelfth_message', 'maxlength')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 12 debe tener máximo 20 caracteres</div>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+                }
+
+                @if ((model().total_messages || 0) >= 13) {
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Mensaje de Nro 13
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Ingresa un texto de hasta 30 letras para personalizar tu invitación. Ingresa una dirección:
+                        <span class="font-bold text-sky-500">"Av. Alejandro Santiago #363"</span> para
+                        hacer tu invitación única y especial.
+                    </label>
+                </div>
+                <div class="col-span-5 flex flex-wrap -mx-3">
+                    <div class="w-full px-3 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                            Mensaje Nro 13
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            type="text" formControlName="thirteenth_message"
+                            [ngClass]="(formControlIsInitial('thirteenth_message') || formControlIsValid('thirteenth_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="Av. Alejandro Santiago #363">
+
+                        @if (isValid('thirteenth_message', 'required')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 13 es obligatorio</div>
+                        </div>
+                        }
+
+                        @if (isValid('thirteenth_message', 'maxlength')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 13 debe tener máximo 20 caracteres</div>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+                }
+
+                @if ((model().total_messages || 0) >= 14) {
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Mensaje de Nro 14
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Ingresa un texto de hasta 30 letras para personalizar tu invitación. Ingresa una referencia:
+                        <span class="font-bold text-sky-500">"(Parque de las Palmeras)"</span> para
+                        hacer tu invitación única y especial.
+                    </label>
+                </div>
+                <div class="col-span-5 flex flex-wrap -mx-3">
+                    <div class="w-full px-3 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                            Mensaje Nro 14
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            type="text" formControlName="fourteenth_message"
+                            [ngClass]="(formControlIsInitial('fourteenth_message') || formControlIsValid('fourteenth_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="(Parque de las Palmeras)">
+
+                        @if (isValid('fourteenth_message', 'required')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 14 es obligatorio</div>
+                        </div>
+                        }
+
+                        @if (isValid('fourteenth_message', 'maxlength')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 14 debe tener máximo 30 caracteres</div>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+                }
+
+                @if ((model().total_messages || 0) >= 15) {
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Mensaje de Nro 15
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Usa sinónimos de <span
+                            class="font-bold text-sky-500">"Te
+                            Esperamos"</span>
+                        para hacer tu invitación única y especial. Sugerencias: "Contamos Contigo", "Ven Con Nosotros",
+                        "Te Aguardo", "No Faltes", "Te Esperamos
+                        Allí", "Eres Bienvenido", "Esperamos Verte", "Únete a Nosotros".
+                    </label>
+                </div>
+                <div class="col-span-5 flex flex-wrap -mx-3">
+                    <div class="w-full px-3 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                            Mensaje Nro 15
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            type="text" formControlName="fifteenth_message"
+                            [ngClass]="(formControlIsInitial('fifteenth_message') || formControlIsValid('fifteenth_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="No Faltes!">
+
+                        @if (isValid('fifteenth_message', 'required')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 15 es obligatorio</div>
+                        </div>
+                        }
+
+                        @if (isValid('fifteenth_message', 'maxlength')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 15 debe tener máximo 20 caracteres</div>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+                }
+
+                @if ((model().total_messages || 0) >= 16) {
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Mensaje de Nro 16
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Ingresa un texto de hasta 20 letras para personalizar tu invitación. Usa sinónimos de <span
+                            class="font-bold text-sky-500">"No Faltes"</span> para hacer tu
+                        invitación única y especial. Sugerencias: "No te lo Pierdas", "Asiste", "Ven con Nosotros", "Sé
+                        Parte", "Acompáñanos", "No Faltes Por
+                        Nada", "Te Esperamos Allí", "No te Ausentes".
+                    </label>
+                </div>
+                <div class="col-span-5 flex flex-wrap -mx-3">
+                    <div class="w-full px-3 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                            Mensaje Nro 16
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            type="text" formControlName="sixteenth_message"
+                            [ngClass]="(formControlIsInitial('sixteenth_message') || formControlIsValid('sixteenth_message')) ? 'border-gray-400' : 'border-red-500'"
+                            placeholder="No Faltes!">
+
+                        @if (isValid('sixteenth_message', 'required')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 16 es obligatorio</div>
+                        </div>
+                        }
+
+                        @if (isValid('sixteenth_message', 'maxlength')) {
+                        <div class="text-xs text-red-500">
+                            <div>El Mensaje Nro 16 debe tener máximo 20 caracteres</div>
+                        </div>
+                        }
+
+                    </div>
+                </div>
+                }
+
+                @if (model().total_images >= 1) {
 
                 <div class="col-span-3">
                     <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        Imagen Nro 1
+                        Fotografía
                     </label>
                     <label class="block tracking-wide text-gray-700 text-xs mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Sube tu fotografía en formato PNG, JPG o GIF, con un tamaño máximo de 2MB, para crear una
+                        invitación digital única y personalizada. Asegúrate de que la imagen sea clara y relevante para
+                        tu propósito. Convierte tus momentos en invitaciones memorables.
                     </label>
                 </div>
                 <div class="col-span-5">
                     <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">
-                        Imagen Nro 1</label>
+                        Fotografía</label>
 
-                    @if (preview==''){
+                    @if (previewFirstFile==''){
                     <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-400 px-6 py-10"
                         [ngClass]="{
-                            'border-gray-400': (formControlIsInitial('first_image') || formControlIsValid('first_image')), 
-                            'border-red-500': !(formControlIsInitial('first_image') || formControlIsValid('first_image')),
-                            'bg-gray-200': cssisDragOver,
-                            'bg-white-500': !cssisDragOver,
-                        }" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
+                                'border-gray-400': (formControlIsInitial('first_image') || formControlIsValid('first_image')), 
+                                'border-red-500': !(formControlIsInitial('first_image') || formControlIsValid('first_image')),
+                                'bg-gray-200': cssIsDragOverFirstFile,
+                                'bg-white-500': !cssIsDragOverFirstFile,
+                            }" (drop)="onDropFirstFile($event)" (dragover)="onDragOverFirstFile($event)"
+                        (dragleave)="onDragLeaveFirstFile($event)">
                         <div class="text-center">
                             <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
                                 aria-hidden="true">
@@ -331,40 +666,340 @@
                                     clip-rule="evenodd" />
                             </svg>
                             <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                                <label for="file-upload"
+                                <label for="first-file-upload"
                                     class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                    <span>Cargar una imagen</span>
-                                    <input type="file" class="sr-only" accept="image/png, image/gif, image/jpeg"
-                                        (change)="selectFirstFile($event)">
+                                    <span>Cargar una fotografía</span>
+                                    <input id="first-file-upload" type="file" class="sr-only"
+                                        accept="image/png, image/gif, image/jpeg" (change)="selectFirstFile($event)">
                                 </label>
                                 <p class="pl-1">o arrastrar y soltar</p>
                             </div>
                             <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF hasta 2MB</p>
                         </div>
                     </div>
-                    @if (isValid('first_image', 'required') && !messageType && !messageSize) {
+                    @if (isValid('first_image', 'required') && !messageTypeFirstFile && !messageSizeFirstFile) {
                     <div class="text-xs text-red-500">
-                        <div>La Imagen Nro 1 es obligatorio</div>
+                        <div>La Fotografía es obligatorio</div>
                     </div>
                     }
-                    @if (messageType) {
+                    @if (messageTypeFirstFile) {
                     <div class="text-xs text-red-500">
-                        <div>La imagen debe ser en formato .png, .jpg, .jpeg o .gif</div>
+                        <div>La Fotografía debe ser en formato .png, .jpg, .jpeg o .gif</div>
                     </div>
                     }
-                    @if (messageSize) {
+                    @if (messageSizeFirstFile) {
                     <div class="text-xs text-red-500">
-                        <div>La imagen debe ser menor a 2MB</div>
+                        <div>La Fotografía debe ser menor a 2MB</div>
                     </div>
                     }
                     }
                     @else{
                     <div>
-                        <img [src]="preview" class="preview" />
+                        <img [src]="previewFirstFile" class="preview" />
                         <button type="submit"
-                            class="mt-1 px-2 py-1 ml-auto text-xs text-white bg-orange-500 rounded hover:bg-orange-700"
+                            class="mt-1 px-2 py-1 ml-auto text-xs text-white bg-gray-500 rounded hover:bg-gray-700"
                             (click)="changeFirstImage()">
-                            Cambiar Imagen
+                            Cambiar Fotografía
+                        </button>
+                    </div>
+                    }
+
+                </div>
+                }
+
+                @if (model().total_images >= 2) {
+
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Segunda Fotografía
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Sube tu segunda fotografía en formato PNG, JPG o GIF, con un tamaño máximo de 2MB, para crear
+                        una
+                        invitación digital única y personalizada. Asegúrate de que la imagen sea clara y relevante para
+                        tu propósito. Convierte tus momentos en invitaciones memorables.
+                    </label>
+                </div>
+                <div class="col-span-5">
+                    <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">
+                        Segunda Fotografía</label>
+
+                    @if (previewSecondFile==''){
+                    <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-400 px-6 py-10"
+                        [ngClass]="{
+                                    'border-gray-400': (formControlIsInitial('second_image') || formControlIsValid('second_image')), 
+                                    'border-red-500': !(formControlIsInitial('second_image') || formControlIsValid('second_image')),
+                                    'bg-gray-200': cssIsDragOverSecondFile,
+                                    'bg-white-500': !cssIsDragOverSecondFile,
+                                }" (drop)="onDropSecondFile($event)" (dragover)="onDragOverSecondFile($event)"
+                        (dragleave)="onDragLeaveSecondFile($event)">
+                        <div class="text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                                <label for="second-file-upload"
+                                    class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>Cargar una fotografía</span>
+                                    <input id="second-file-upload" type="file" class="sr-only"
+                                        accept="image/png, image/gif, image/jpeg" (change)="selectSecondFile($event)">
+                                </label>
+                                <p class="pl-1">o arrastrar y soltar</p>
+                            </div>
+                            <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF hasta 2MB</p>
+                        </div>
+                    </div>
+                    @if (isValid('second_image', 'required') && !messageTypeSecondFile && !messageSizeSecondFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Segunda Fotografía es obligatorio</div>
+                    </div>
+                    }
+                    @if (messageTypeSecondFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Segunda Fotografía debe ser en formato .png, .jpg, .jpeg o .gif</div>
+                    </div>
+                    }
+                    @if (messageSizeSecondFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Segunda Fotografía debe ser menor a 2MB</div>
+                    </div>
+                    }
+                    }
+                    @else{
+                    <div>
+                        <img [src]="previewSecondFile" class="preview" />
+                        <button type="submit"
+                            class="mt-1 px-2 py-1 ml-auto text-xs text-white bg-gray-500 rounded hover:bg-gray-700"
+                            (click)="changeSecondImage()">
+                            Cambiar Segunda Fotografía
+                        </button>
+                    </div>
+                    }
+
+                </div>
+                }
+
+                @if (model().total_images >= 3) {
+
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Tercera Fotografía
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Sube tu tercera fotografía en formato PNG, JPG o GIF, con un tamaño máximo de 2MB, para crear
+                        una
+                        invitación digital única y personalizada. Asegúrate de que la imagen sea clara y relevante para
+                        tu propósito. Convierte tus momentos en invitaciones memorables.
+                    </label>
+                </div>
+                <div class="col-span-5">
+                    <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">
+                        Tercera Fotografía</label>
+
+                    @if (previewThirdFile==''){
+                    <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-400 px-6 py-10"
+                        [ngClass]="{
+                                        'border-gray-400': (formControlIsInitial('third_image') || formControlIsValid('third_image')), 
+                                        'border-red-500': !(formControlIsInitial('third_image') || formControlIsValid('third_image')),
+                                        'bg-gray-200': cssIsDragOverThirdFile,
+                                        'bg-white-500': !cssIsDragOverThirdFile,
+                                    }" (drop)="onDropThirdFile($event)" (dragover)="onDragOverThirdFile($event)"
+                        (dragleave)="onDragLeaveThirdFile($event)">
+                        <div class="text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                                <label for="third-file-upload"
+                                    class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>Cargar una fotografía</span>
+                                    <input id="third-file-upload" type="file" class="sr-only"
+                                        accept="image/png, image/gif, image/jpeg" (change)="selectThirdFile($event)">
+                                </label>
+                                <p class="pl-1">o arrastrar y soltar</p>
+                            </div>
+                            <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF hasta 2MB</p>
+                        </div>
+                    </div>
+                    @if (isValid('third_image', 'required') && !messageTypeThirdFile && !messageSizeThirdFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Tercera Fotografía es obligatorio</div>
+                    </div>
+                    }
+                    @if (messageTypeThirdFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Tercera Fotografía debe ser en formato .png, .jpg, .jpeg o .gif</div>
+                    </div>
+                    }
+                    @if (messageSizeThirdFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Tercera Fotografía debe ser menor a 2MB</div>
+                    </div>
+                    }
+                    }
+                    @else{
+                    <div>
+                        <img [src]="previewThirdFile" class="preview" />
+                        <button type="submit"
+                            class="mt-1 px-2 py-1 ml-auto text-xs text-white bg-gray-500 rounded hover:bg-gray-700"
+                            (click)="changeThirdImage()">
+                            Cambiar Tercera Fotografía
+                        </button>
+                    </div>
+                    }
+
+                </div>
+                }
+
+                @if (model().total_images >= 4) {
+
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Cuarta Fotografía
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Sube tu cuarta fotografía en formato PNG, JPG o GIF, con un tamaño máximo de 2MB, para crear
+                        una
+                        invitación digital única y personalizada. Asegúrate de que la imagen sea clara y relevante para
+                        tu propósito. Convierte tus momentos en invitaciones memorables.
+                    </label>
+                </div>
+                <div class="col-span-5">
+                    <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">
+                        Cuarta Fotografía</label>
+
+                    @if (previewFourthFile==''){
+                    <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-400 px-6 py-10"
+                        [ngClass]="{
+                                            'border-gray-400': (formControlIsInitial('fourth_image') || formControlIsValid('fourth_image')), 
+                                            'border-red-500': !(formControlIsInitial('fourth_image') || formControlIsValid('fourth_image')),
+                                            'bg-gray-200': cssIsDragOverFourthFile,
+                                            'bg-white-500': !cssIsDragOverFourthFile,
+                                        }" (drop)="onDropFourthFile($event)" (dragover)="onDragOverFourthFile($event)"
+                        (dragleave)="onDragLeaveFourthFile($event)">
+                        <div class="text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                                <label for="fourth-file-upload"
+                                    class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>Cargar una fotografía</span>
+                                    <input id="fourth-file-upload" type="file" class="sr-only"
+                                        accept="image/png, image/gif, image/jpeg" (change)="selectFourthFile($event)">
+                                </label>
+                                <p class="pl-1">o arrastrar y soltar</p>
+                            </div>
+                            <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF hasta 2MB</p>
+                        </div>
+                    </div>
+                    @if (isValid('fourth_image', 'required') && !messageTypeFourthFile && !messageSizeFourthFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Cuarta Fotografía es obligatorio</div>
+                    </div>
+                    }
+                    @if (messageTypeFourthFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Cuarta Fotografía debe ser en formato .png, .jpg, .jpeg o .gif</div>
+                    </div>
+                    }
+                    @if (messageSizeFourthFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Cuarta Fotografía debe ser menor a 2MB</div>
+                    </div>
+                    }
+                    }
+                    @else{
+                    <div>
+                        <img [src]="previewFourthFile" class="preview" />
+                        <button type="submit"
+                            class="mt-1 px-2 py-1 ml-auto text-xs text-white bg-gray-500 rounded hover:bg-gray-700"
+                            (click)="changeFourthImage()">
+                            Cambiar Cuarta Fotografía
+                        </button>
+                    </div>
+                    }
+
+                </div>
+                }
+
+                @if (model().total_images >= 5) {
+
+                <div class="col-span-3">
+                    <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Quinta Fotografía
+                    </label>
+                    <label class="block tracking-wide text-gray-700 text-xs mb-2">
+                        Sube tu quinta fotografía en formato PNG, JPG o GIF, con un tamaño máximo de 2MB, para crear
+                        una
+                        invitación digital única y personalizada. Asegúrate de que la imagen sea clara y relevante para
+                        tu propósito. Convierte tus momentos en invitaciones memorables.
+                    </label>
+                </div>
+                <div class="col-span-5">
+                    <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">
+                        Quinta Fotografía</label>
+
+                    @if (previewFifthFile==''){
+                    <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-400 px-6 py-10"
+                        [ngClass]="{
+                                                'border-gray-400': (formControlIsInitial('fifth_image') || formControlIsValid('fifth_image')), 
+                                                'border-red-500': !(formControlIsInitial('fifth_image') || formControlIsValid('fifth_image')),
+                                                'bg-gray-200': cssIsDragOverFifthFile,
+                                                'bg-white-500': !cssIsDragOverFifthFile,
+                                            }" (drop)="onDropFifthFile($event)"
+                        (dragover)="onDragOverFifthFile($event)" (dragleave)="onDragLeaveFifthFile($event)">
+                        <div class="text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                                <label for="fifth-file-upload"
+                                    class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>Cargar una fotografía</span>
+                                    <input id="fifth-file-upload" type="file" class="sr-only"
+                                        accept="image/png, image/gif, image/jpeg" (change)="selectFifthFile($event)">
+                                </label>
+                                <p class="pl-1">o arrastrar y soltar</p>
+                            </div>
+                            <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF hasta 2MB</p>
+                        </div>
+                    </div>
+                    @if (isValid('fifth_image', 'required') && !messageTypeFifthFile && !messageSizeFifthFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Quinta Fotografía es obligatorio</div>
+                    </div>
+                    }
+                    @if (messageTypeFifthFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Quinta Fotografía debe ser en formato .png, .jpg, .jpeg o .gif</div>
+                    </div>
+                    }
+                    @if (messageSizeFifthFile) {
+                    <div class="text-xs text-red-500">
+                        <div>La Quinta Fotografía debe ser menor a 2MB</div>
+                    </div>
+                    }
+                    }
+                    @else{
+                    <div>
+                        <img [src]="previewFifthFile" class="preview" />
+                        <button type="submit"
+                            class="mt-1 px-2 py-1 ml-auto text-xs text-white bg-gray-500 rounded hover:bg-gray-700"
+                            (click)="changeFifthImage()">
+                            Cambiar Quinta Fotografía
                         </button>
                     </div>
                     }
@@ -397,3 +1032,5 @@
 
     </div>
 </section>
+
+}

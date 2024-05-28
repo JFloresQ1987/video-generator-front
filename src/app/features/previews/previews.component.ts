@@ -39,6 +39,8 @@ export default class PreviewsComponent implements OnInit {
     model_title: '',
     model_image: '',
     model_price: 0,
+    model_total_messages: 0,
+    model_total_images: 0,
     // messages: null,
     // images: null,
     video_rendered_url: '',
@@ -127,10 +129,15 @@ export default class PreviewsComponent implements OnInit {
   // handleUpdates(payload: any): void {
   handleUpdates(payload: any) {
     // this.production.set(payload.new);
-
+    const data = payload.new;
     //setear valor sólo si hay cambio de estado.
-    if (this.order()?.order_state != payload.new.order_state)
-      this.order.set(payload.new);
+
+    if (data.is_current && !data.is_deleted) {
+
+      if (this.order()?.order_state != data.order_state)
+        this.order.set(data);
+    }
+
     // this.order = payload.new;
 
     // this.order = this.ordersSvc.getOrderById(this.orderId());
