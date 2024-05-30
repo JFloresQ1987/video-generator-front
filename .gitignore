@@ -7,7 +7,7 @@
 /bazel-out
 
 environment.ts
-environment.development.ts
+environment.prod.ts
 
 # Node
 /node_modules
