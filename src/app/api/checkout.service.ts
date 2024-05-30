@@ -8,7 +8,7 @@ import { map } from 'rxjs';
 export class CheckoutService {
   private readonly _http = inject(HttpClient);
   private readonly _endPoint = environment.apiURL;
-  private readonly _url = environment.serverURL;
+  // private readonly _url = environment.serverURL;
 
   onProceedToPay(id: string, products: ProductCheckout[]) {    
 

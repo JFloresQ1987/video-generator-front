@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withHashLocation } from '@angular/router';
 import { ErrorResponseInterceptor } from '@shared/interceptors/error-response.interceptor';
 import { SpinnerInterceptor } from '@shared/interceptors/spinner.interceptor';
 import { provideToastr } from 'ngx-toastr';
@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
     provideToastr({ timeOut: 3000, positionClass: 'toast-bottom-right', preventDuplicates: true }),
-    provideRouter(routes, withComponentInputBinding()),
+    provideRouter(routes, withComponentInputBinding(), withHashLocation()),
     provideHttpClient(
       withFetch(),
       withInterceptors([ErrorResponseInterceptor, SpinnerInterceptor])
