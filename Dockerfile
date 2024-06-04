@@ -11,20 +11,28 @@ COPY . .
 RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/environments/config.json > ./src/environments/config.tmp.json && mv ./src/environments/config.tmp.json ./src/environments/config.json
 RUN npm install && npm run build
 
-FROM nginx:1.23.3
-ENV JSFOLDER=/usr/share/nginx/html/*.js
-COPY ./start-nginx.sh /usr/bin/start-nginx.sh
-RUN chmod +x /usr/bin/start-nginx.sh
+# FROM nginx:1.23.3
+# ENV JSFOLDER=/usr/share/nginx/html/*.js
+# COPY ./start-nginx.sh /usr/bin/start-nginx.sh
+# RUN chmod +x /usr/bin/start-nginx.sh
 
-WORKDIR /usr/share/nginx/html
-EXPOSE 4200
-# Angular
-COPY --from=0 /app/dist/video-generator-front .
-# React
-# COPY --from=0 /app/build .
-# VueJS
-# COPY --from=0 /app/dist .
-ENTRYPOINT [ "start-nginx.sh" ]
+# WORKDIR /usr/share/nginx/html
+# EXPOSE 4200
+# # Angular
+# COPY --from=0 /app/dist/video-generator-front .
+# # React
+# # COPY --from=0 /app/build .
+# # VueJS
+# # COPY --from=0 /app/dist .
+# ENTRYPOINT [ "start-nginx.sh" ]
+
+FROM nginx:1.23.3
+# EXPOSE 4200
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
+# COPY --from=build /app/src/dist/$PROJECT_NAME/server /var/www/html
+COPY --from=0 /app/dist/video-generator-front /var/www/html
+CMD ["nginx", "-g", "daemon off;"]
 
 # # FROM node:20.13-alpine as dev-deps
 # # WORKDIR /app
