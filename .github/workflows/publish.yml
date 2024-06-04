@@ -60,12 +60,12 @@ jobs:
             docker pull ghcr.io/jfloresq1987/video-generator-front:latest
             docker stop video-generator-front && docker rm video-generator-front
             docker run -d \
-            -e apiURL=$apiURL \            
+            -e apiURL=$apiURL \
             -e SUPABASE_URL=$SUPABASE_URL \
             -e SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY \
             -e SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY \
             -e RECAPTCHA_V3_STACKBLITZ_KEY=$RECAPTCHA_V3_STACKBLITZ_KEY \
-            -e RECAPTCHA_V2_DUMMY_KEY=$RECAPTCHA_V2_DUMMY_KEY \            
+            -e RECAPTCHA_V2_DUMMY_KEY=$RECAPTCHA_V2_DUMMY_KEY \
             --name video-generator-front \
             -p 4200:4200 \
             ghcr.io/jfloresq1987/video-generator-front:latest
