@@ -15,13 +15,6 @@ on:
 jobs:
   create-docker-image:
     runs-on: ubuntu-latest
-    env:
-      apiURL: http://happychecho.qhatuyki.shop/api      
-      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-      RECAPTCHA_V3_STACKBLITZ_KEY: 6Ldl4dgpAAAAAOaitS_6xpc0-5aQcOeCoOvTkpNi
-      RECAPTCHA_V2_DUMMY_KEY: 6Lcbt1waAAAAAFiUe0tUSxbjivzoQe_boiXfFRf_
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
@@ -59,14 +52,4 @@ jobs:
             docker login ghcr.io -u jfloresq1987 -p ${{ secrets.TOKEN_TEST_CD }}
             docker pull ghcr.io/jfloresq1987/video-generator-front:latest
             docker stop video-generator-front && docker rm video-generator-front
-            docker run -d \
-            -e apiURL=$apiURL \
-            -e SUPABASE_URL=$SUPABASE_URL \
-            -e SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY \
-            -e SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY \
-            -e RECAPTCHA_V3_STACKBLITZ_KEY=$RECAPTCHA_V3_STACKBLITZ_KEY \
-            -e RECAPTCHA_V2_DUMMY_KEY=$RECAPTCHA_V2_DUMMY_KEY \
-            --name video-generator-front \
-            -p 4200:4200 \
-            ghcr.io/jfloresq1987/video-generator-front:latest
           EOF
