@@ -1,31 +1,31 @@
-FROM node:20.13-alpine as dev-deps
-ENV JQ_VERSION=1.6
-RUN wget --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 -O /tmp/jq-linux64
-RUN cp /tmp/jq-linux64 /usr/bin/jq
-RUN chmod +x /usr/bin/jq
-WORKDIR /app
-COPY package.json package.json
-RUN npm install
-
-FROM node:20.13-alpine as builder
-WORKDIR /app
-COPY --from=dev-deps /app/node_modules ./node_modules
-COPY . .
-RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/environments/config.json > ./src/environments/config.tmp.json && mv ./src/environments/config.tmp.json ./src/environments/config.json
-RUN npm run build
-
-# FROM node:20.13-alpine
-
+# FROM node:20.13-alpine as dev-deps
 # ENV JQ_VERSION=1.6
 # RUN wget --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 -O /tmp/jq-linux64
 # RUN cp /tmp/jq-linux64 /usr/bin/jq
 # RUN chmod +x /usr/bin/jq
-
 # WORKDIR /app
+# COPY package.json package.json
+# RUN npm install
+
+# FROM node:20.13-alpine as builder
+# WORKDIR /app
+# COPY --from=dev-deps /app/node_modules ./node_modules
 # COPY . .
-# # RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/config.json > ./src/config.tmp.json && mv ./src/config.tmp.json ./src/config.json
 # RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/environments/config.json > ./src/environments/config.tmp.json && mv ./src/environments/config.tmp.json ./src/environments/config.json
-# RUN npm install && npm run build
+# RUN npm run build
+
+FROM node:20.13-alpine
+
+ENV JQ_VERSION=1.6
+RUN wget --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 -O /tmp/jq-linux64
+RUN cp /tmp/jq-linux64 /usr/bin/jq
+RUN chmod +x /usr/bin/jq
+
+WORKDIR /app
+COPY . .
+# RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/config.json > ./src/config.tmp.json && mv ./src/config.tmp.json ./src/config.json
+RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/environments/config.json > ./src/environments/config.tmp.json && mv ./src/environments/config.tmp.json ./src/environments/config.json
+RUN npm install && npm run build
 
 # FROM nginx:1.23.3
 # ENV JSFOLDER=/usr/share/nginx/html/*.js
@@ -47,7 +47,7 @@ FROM nginx:stable as prod
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d
 # COPY --from=build /app/src/dist/$PROJECT_NAME/server /var/www/html
-COPY --from=builder /app/dist/video-generator-front /var/www/html
+COPY --from=0 /app/dist/video-generator-front/browser /var/www/app
 CMD ["nginx", "-g", "daemon off;"]
 
 # # FROM nginx:1.23.3 as prod
