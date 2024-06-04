@@ -7,12 +7,15 @@ import {
 import { environment } from '@envs/environment';
 import { Category } from '@shared/models/category.interface';
 import { map, tap } from 'rxjs';
+import Config from '@envs/config.json'
+// import * as Config from '../../environments/config.json'
 
 @Injectable({ providedIn: 'root' })
 export class CategoriesService {
     public categories = signal<Category[]>([]);
     private readonly _http = inject(HttpClient);
-    private readonly _endPoint = environment.apiURL;
+    // private readonly _endPoint = environment.apiURL;
+    private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
 
     constructor() {
         this.getCategories();

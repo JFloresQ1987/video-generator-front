@@ -9,12 +9,14 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { environment } from '@envs/environment';
 import { Product } from '@shared/models/product.interface';
+import Config from '@envs/config.json'
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
   public products = signal<Product[]>([]);
   private readonly _http = inject(HttpClient);  
-  private readonly _endPoint = environment.apiURL;
+  private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
+  // private readonly _endPoint = environment.apiURL;
   private readonly _injector = inject(EnvironmentInjector);
 
   constructor() {

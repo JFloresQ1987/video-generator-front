@@ -1,16 +1,44 @@
-FROM node:20.13-alpine as build
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . ./
-RUN npm run build
+FROM node:20.13-alpine
 
-FROM nginx:1.23
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d
-# COPY --from=build /app/src/dist/$PROJECT_NAME/server /var/www/html
-COPY --from=build /app/dist/video-generator-front /var/www/html
-CMD ["nginx", "-g", "daemon off;"]
+ENV JQ_VERSION=1.6
+RUN wget --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 -O /tmp/jq-linux64
+RUN cp /tmp/jq-linux64 /usr/bin/jq
+RUN chmod +x /usr/bin/jq
+
+WORKDIR /app
+COPY . .
+RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/environments/config.json > ./src/environments/config.tmp.json && mv ./src/environments/config.tmp.json ./src/environments/config.json
+RUN npm install && npm run build
+
+FROM nginx:1.23.3
+ENV JSFOLDER=/usr/share/nginx/html/*.js
+COPY ./start-nginx.sh /usr/bin/start-nginx.sh
+RUN chmod +x /usr/bin/start-nginx.sh
+
+WORKDIR /usr/share/nginx/html
+# Angular
+COPY --from=0 /app/dist/video-generator-front .
+# React
+# COPY --from=0 /app/build .
+# VueJS
+# COPY --from=0 /app/dist .
+ENTRYPOINT [ "start-nginx.sh" ]
+
+# FROM node:20.13-alpine as build
+# WORKDIR /app
+# COPY package*.json ./
+# RUN npm ci
+# COPY . ./
+# # RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/environments/config.json > ./src/environments/config.tmp.json && mv ./src/environments/config.tmp.json ./src/environments/config.json
+# RUN npm run build
+
+# FROM nginx:1.23
+# # EXPOSE 4200
+# RUN rm /etc/nginx/conf.d/default.conf
+# COPY nginx.conf /etc/nginx/conf.d
+# # COPY --from=build /app/src/dist/$PROJECT_NAME/server /var/www/html
+# COPY --from=build /app/dist/video-generator-front /var/www/html
+# CMD ["nginx", "-g", "daemon off;"]
 
 
 

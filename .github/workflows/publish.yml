@@ -15,6 +15,13 @@ on:
 jobs:
   create-docker-image:
     runs-on: ubuntu-latest
+    env:
+      apiURL: http://happychecho.qhatuyki.shop/api      
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      RECAPTCHA_V3_STACKBLITZ_KEY: 6Ldl4dgpAAAAAOaitS_6xpc0-5aQcOeCoOvTkpNi
+      RECAPTCHA_V2_DUMMY_KEY: 6Lcbt1waAAAAAFiUe0tUSxbjivzoQe_boiXfFRf_
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2

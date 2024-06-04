@@ -3,11 +3,13 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '@envs/environment';
 import { ProductCheckout } from '@shared/models/product.interface';
 import { map } from 'rxjs';
+import Config from '@envs/config.json'
 
 @Injectable({ providedIn: 'root' })
 export class CheckoutService {
   private readonly _http = inject(HttpClient);
-  private readonly _endPoint = environment.apiURL;
+  // private readonly _endPoint = environment.apiURL;
+  private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
   // private readonly _url = environment.serverURL;
 
   onProceedToPay(id: string, products: ProductCheckout[]) {    

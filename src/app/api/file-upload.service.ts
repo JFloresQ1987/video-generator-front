@@ -3,6 +3,7 @@ import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { supabase } from '@shared/libs/supabase';
 import { environment } from '@envs/environment';
+import Config from '@envs/config.json'
 
 @Injectable({
     providedIn: 'root',
@@ -11,7 +12,8 @@ export class FileUploadService {
     private baseUrl = 'http://localhost:8080';
 
     private readonly _http = inject(HttpClient);
-    private readonly _endPoint = environment.apiURL;
+    private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
+    // private readonly _endPoint = environment.apiURL;
 
     constructor(private http: HttpClient) { }
 

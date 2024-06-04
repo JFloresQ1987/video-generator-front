@@ -12,6 +12,7 @@ import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
 import { RECAPTCHA_SETTINGS, RECAPTCHA_V3_SITE_KEY, RecaptchaSettings, RecaptchaV3Module } from 'ng-recaptcha';
 import { environment } from '@envs/environment';
+import Config from '@envs/config.json'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,12 +29,14 @@ export const appConfig: ApplicationConfig = {
     // { provide: RECAPTCHA_V3_SITE_KEY, useValue: "6Ldl4dgpAAAAAOaitS_6xpc0-5aQcOeCoOvTkpNi" }
     {
       provide: RECAPTCHA_V3_SITE_KEY,
-      useValue: environment.RECAPTCHA_V3_STACKBLITZ_KEY
+      // useValue: environment.RECAPTCHA_V3_STACKBLITZ_KEY
+      useValue: environment.production ? Config.RECAPTCHA_V3_STACKBLITZ_KEY : environment.RECAPTCHA_V3_STACKBLITZ_KEY
     },
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {
-        siteKey: environment.RECAPTCHA_V2_DUMMY_KEY
+        // siteKey: environment.RECAPTCHA_V2_DUMMY_KEY
+        siteKey: environment.production ? Config.RECAPTCHA_V2_DUMMY_KEY : environment.RECAPTCHA_V2_DUMMY_KEY
       } as RecaptchaSettings
     }
   ],
