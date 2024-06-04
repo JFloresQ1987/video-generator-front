@@ -1,4 +1,16 @@
-FROM node:20.13-alpine
+# FROM node:20.13-alpine as dev-deps
+# WORKDIR /app
+# COPY package.json package.json
+# RUN npm install
+
+# FROM node:20.13-alpine as builder
+# WORKDIR /app
+# COPY --from=dev-deps /app/node_modules ./node_modules
+# COPY . .
+# RUN npm run build
+
+
+FROM node:20.13-alpine as dev-deps
 
 ENV JQ_VERSION=1.6
 RUN wget --no-check-certificate https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64 -O /tmp/jq-linux64
@@ -6,9 +18,20 @@ RUN cp /tmp/jq-linux64 /usr/bin/jq
 RUN chmod +x /usr/bin/jq
 
 WORKDIR /app
+COPY package.json package.json
+RUN npm install
+
+# WORKDIR /app
+# COPY . .
+# RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/environments/config.json > ./src/environments/config.tmp.json && mv ./src/environments/config.tmp.json ./src/environments/config.json
+# RUN npm install && npm run build
+
+FROM node:20.13-alpine as builder
+WORKDIR /app
+COPY --from=dev-deps /app/node_modules ./node_modules
 COPY . .
 RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/environments/config.json > ./src/environments/config.tmp.json && mv ./src/environments/config.tmp.json ./src/environments/config.json
-RUN npm install && npm run build
+RUN npm run build
 
 FROM nginx:1.23.3
 ENV JSFOLDER=/usr/share/nginx/html/*.js
