@@ -21,6 +21,7 @@ export class CategoriesService {
         console.log('entrooo')
         console.log(environment.production)
         console.log(Config.apiURL)
+        console.log(Config)
         this.getCategories();
     }
 
