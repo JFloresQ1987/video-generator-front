@@ -17,6 +17,7 @@ COPY ./start-nginx.sh /usr/bin/start-nginx.sh
 RUN chmod +x /usr/bin/start-nginx.sh
 
 WORKDIR /usr/share/nginx/html
+EXPOSE 4200
 # Angular
 COPY --from=0 /app/dist/video-generator-front .
 # React
