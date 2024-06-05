@@ -12,8 +12,8 @@ RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item
 RUN npm install && npm run build
 
 FROM nginx:stable
-ENV JSFOLDER=/usr/share/nginx/html/*.js
-# ENV JSFOLDER=/var/www/app/*.js
+# ENV JSFOLDER=/usr/share/nginx/html/*.js
+ENV JSFOLDER=/var/www/app/*.js
 COPY ./start-nginx.sh /usr/bin/start-nginx.sh
 RUN chmod +x /usr/bin/start-nginx.sh
 
