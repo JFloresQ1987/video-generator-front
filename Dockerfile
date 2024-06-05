@@ -47,19 +47,20 @@ RUN npm install && npm run build
 
 
 FROM nginx:stable as prod
-# ENV JSFOLDER=/usr/share/nginx/html/*.js
-ENV JSFOLDER=/var/www/app/*.js
+ENV JSFOLDER=/usr/share/nginx/html/*.js
+# ENV JSFOLDER=/var/www/app/*.js
 COPY ./start-nginx.sh /usr/bin/start-nginx.sh
 RUN chmod +x /usr/bin/start-nginx.sh
 
-# WORKDIR /usr/share/nginx/html
+WORKDIR /usr/share/nginx/html
 # WORKDIR /var/www/app/assets
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d
+# RUN rm /etc/nginx/conf.d/default.conf
+# COPY nginx.conf /etc/nginx/conf.d
 
 # Angular
 # COPY --from=0 /app/dist/video-generator-front/browser /var/www/app
-COPY --from=0 /app/dist/video-generator-front/browser /var/www/app
+# COPY --from=0 /app/dist/video-generator-front/browser /var/www/app
+COPY --from=0 /app/dist/video-generator-front/browser .
 # React
 # COPY --from=0 /app/build .
 # VueJS
