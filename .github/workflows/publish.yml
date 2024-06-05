@@ -42,7 +42,7 @@ jobs:
     needs: create-docker-image
     runs-on: ubuntu-latest
     env:
-      apiURL: http://happychecho.qhatuyki.shop/api
+      apiURL: http://happychecho.qhatuyki.shop/api22
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
