@@ -2,9 +2,9 @@
 export const environment = {
   production: true,
   apiURL: 'http://happychecho.qhatuyki.shop/api',
-  SUPABASE_URL: 'https://blijhwisxhocmojszgoy.supabase.co',
-  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsaWpod2lzeGhvY21vanN6Z295Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQ0NTIwNzIsImV4cCI6MjAzMDAyODA3Mn0.yLvFw7dL4wHD33XlYqZ7Ko32bDMCQtJMew_wNeRwDUw',
-  SUPABASE_SERVICE_ROLE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsaWpod2lzeGhvY21vanN6Z295Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxNDQ1MjA3MiwiZXhwIjoyMDMwMDI4MDcyfQ.vZzAONDWyZxhRjknotmirmRJVlb0D4J4YYOTuOTFLw8',
-  RECAPTCHA_V3_STACKBLITZ_KEY: 'qwe',
-  RECAPTCHA_V2_DUMMY_KEY: 'asd',
+  SUPABASE_URL: '',
+  SUPABASE_ANON_KEY: '',
+  SUPABASE_SERVICE_ROLE_KEY: '',
+  RECAPTCHA_V3_STACKBLITZ_KEY: '',
+  RECAPTCHA_V2_DUMMY_KEY: '',
 };
