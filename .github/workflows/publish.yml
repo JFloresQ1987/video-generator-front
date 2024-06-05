@@ -53,7 +53,6 @@ jobs:
             docker pull ghcr.io/jfloresq1987/video-generator-front:latest
             docker stop video-generator-front && docker rm video-generator-front
             docker run -d \
-            -e apiURL=http://happychecho.qhatuyki.shop/api \
             --name video-generator-front \
             -p 4200:4200 \
             ghcr.io/jfloresq1987/video-generator-front:latest
