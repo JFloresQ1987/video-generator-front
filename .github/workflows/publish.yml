@@ -53,7 +53,8 @@ jobs:
             docker pull ghcr.io/jfloresq1987/video-generator-front:latest
             docker stop video-generator-front && docker rm video-generator-front
             docker run -d \
-            -e apiURL=$apiURL \
+            -e apiURL=qwe \
+            -e SUPABASE_URL=asd \
             --name video-generator-front \
             -p 4200:4200 \
             ghcr.io/jfloresq1987/video-generator-front:latest
