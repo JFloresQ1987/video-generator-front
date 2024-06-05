@@ -14,9 +14,9 @@ import Config from '@envs/config.json'
 export class CategoriesService {
     public categories = signal<Category[]>([]);
     private readonly _http = inject(HttpClient);
-    private readonly _endPoint = environment.apiURL;
+    // private readonly _endPoint = environment.apiURL;
     // private readonly _endPoint = 'http://happychecho.qhatuyki.shop/api'
-    // private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
+    private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
 
     constructor() {
         console.log('entrooo')
