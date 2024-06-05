@@ -44,12 +44,40 @@ RUN npm install && npm run build
 # ENTRYPOINT [ "start-nginx.sh" ]
 
 FROM nginx:stable as prod
-# EXPOSE 4200
+ENV JSFOLDER=/usr/share/nginx/html/*.js
+COPY ./start-nginx.sh /usr/bin/start-nginx.sh
+RUN chmod +x /usr/bin/start-nginx.sh
+
+# WORKDIR /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d
-# COPY --from=build /app/src/dist/$PROJECT_NAME/server /var/www/html
+
+# Angular
 COPY --from=0 /app/dist/video-generator-front/browser /var/www/app
-CMD ["nginx", "-g", "daemon off;"]
+# React
+# COPY --from=0 /app/build .
+# VueJS
+# COPY --from=0 /app/dist .
+ENTRYPOINT [ "start-nginx.sh" ]
+
+
+
+# FROM nginx:stable as prod
+# # EXPOSE 4200
+# RUN rm /etc/nginx/conf.d/default.conf
+# COPY nginx.conf /etc/nginx/conf.d
+# # COPY --from=build /app/src/dist/$PROJECT_NAME/server /var/www/html
+# COPY --from=0 /app/dist/video-generator-front/browser /var/www/app
+# CMD ["nginx", "-g", "daemon off;"]
+
+
+
+
+
+
+
+
+
 
 # # FROM nginx:1.23.3 as prod
 # FROM nginx:stable as prod
