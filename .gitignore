@@ -10,6 +10,8 @@
 # environment.prod.ts
 environment.dev.ts
 
+.env
+
 # Node
 /node_modules
 npm-debug.log

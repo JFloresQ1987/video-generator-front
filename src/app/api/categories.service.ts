@@ -14,13 +14,14 @@ import Config from '../../assets/config.json'
 export class CategoriesService {
     public categories = signal<Category[]>([]);
     private readonly _http = inject(HttpClient);
-    // private readonly _endPoint = environment.apiURL;
+    private readonly _endPoint = environment.apiURL;
     // private readonly _endPoint = 'http://happychecho.qhatuyki.shop/api'
-    private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
+    // private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
 
     constructor() {
         console.log('entrooo')
         console.log(environment.production)
+        console.log(environment.apiURL)
         console.log(Config.apiURL)
         console.log(Config)
         console.log('http://happychecho.qhatuyki.shop/api')

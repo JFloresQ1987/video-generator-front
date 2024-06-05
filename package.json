@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o",    
-    "build": "ng build --configuration production",
+    "config": "node ./config/set-env.config.js",
+    "start": "--environment=dev ng serve -o",
+    "build2": "ng build --environment=prod --configuration production",
+    "build": "npm run config -- --environment=prod && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -20,11 +22,13 @@
     "@angular/router": "^17.3.0",
     "@ngrx/signals": "^17.2.0",
     "@supabase/supabase-js": "^2.43.0",
+    "dotenv": "^16.4.5",
     "moment": "^2.30.1",
     "ng-recaptcha": "^13.2.1",
     "ngx-toastr": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "yargs": "^17.7.2",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
