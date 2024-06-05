@@ -47,7 +47,7 @@ jobs:
       SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       RECAPTCHA_V3_STACKBLITZ_KEY: ${{ secrets.RECAPTCHA_V3_STACKBLITZ_KEY }}
-      RECAPTCHA_V2_DUMMY_KEY: ${{ secrets.RECAPTCHA_V2_DUMMY_KEY }}      
+      RECAPTCHA_V2_DUMMY_KEY: ${{ secrets.RECAPTCHA_V2_DUMMY_KEY }}
     steps:
       - name: Install sshpass
         run: sudo apt-get install sshpass
