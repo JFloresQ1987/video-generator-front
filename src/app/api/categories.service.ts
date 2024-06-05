@@ -22,6 +22,7 @@ export class CategoriesService {
         console.log(environment.production)
         console.log(Config.apiURL)
         console.log(Config)
+        console.log('http://happychecho.qhatuyki.shop/api')
         this.getCategories();
     }
 
