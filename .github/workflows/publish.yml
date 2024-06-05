@@ -53,7 +53,7 @@ jobs:
             docker pull ghcr.io/jfloresq1987/video-generator-front:latest
             docker stop video-generator-front && docker rm video-generator-front
             docker run -d \
-            -e apiURL=$apiURL \
+            -e apiURL=http://happychecho.qhatuyki.shop/api \
             -e SUPABASE_URL=$SUPABASE_URL \
             -e SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY \
             -e SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY \
