@@ -16,7 +16,9 @@ ENV JSFOLDER=/usr/share/nginx/html/*.js
 COPY ./start-nginx.sh /usr/bin/start-nginx.sh
 RUN chmod +x /usr/bin/start-nginx.sh
 
-WORKDIR /usr/share/nginx/html
+# WORKDIR /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d
 # Angular
 COPY --from=0 /app/dist/video-generator-front/browser .
 # React
