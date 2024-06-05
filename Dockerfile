@@ -20,7 +20,7 @@ RUN chmod +x /usr/bin/start-nginx.sh
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d
 # Angular
-COPY --from=0 /app/dist/video-generator-front/browser .
+COPY --from=0 /app/dist/video-generator-front/browser /var/www/app
 # React
 # COPY --from=0 /app/build .
 # VueJS
