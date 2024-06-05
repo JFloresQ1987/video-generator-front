@@ -47,7 +47,7 @@ RUN npm install && npm run build
 
 FROM nginx:stable as prod
 # ENV JSFOLDER=/usr/share/nginx/html/*.js
-ENV JSFOLDER=/var/www/app/assets/
+ENV JSFOLDER=/var/www/app/assets/*.json
 COPY ./start-nginx.sh /usr/bin/start-nginx.sh
 RUN chmod +x /usr/bin/start-nginx.sh
 
