@@ -12,8 +12,6 @@ RUN npm ci --silent
 COPY . .
 RUN npm run build
 
-
-
 ####################
 # Production Image #
 ####################
@@ -30,8 +28,8 @@ ARG RECAPTCHA_V2_DUMMY_KEY
 
 # You can also define some standard values to you environment variables
 # ENV TEST="Hello variable"
-ENV apiURL="Hello_variable"
-ENV SUPABASE_URL="qwe"
+# ENV apiURL="Hello_variable"
+# ENV SUPABASE_URL="qwe"
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d

@@ -22,12 +22,6 @@ export class CategoriesService {
     // private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
 
     constructor() {
-        console.log('entrooo')
-        console.log(environment.production)
-        console.log(runtimeEnvironment.apiURL)
-        console.log(runtimeEnvironment)
-        // console.log(Config.apiURL)
-        // console.log(Config)
         
         this.getCategories();
     }
