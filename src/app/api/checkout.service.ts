@@ -3,7 +3,8 @@ import { Injectable, inject } from '@angular/core';
 import { environment } from '@envs/environment';
 import { ProductCheckout } from '@shared/models/product.interface';
 import { map } from 'rxjs';
-import Config from '@envs/config.json'
+// import Config from '@envs/config.json'
+import Config from '../../config.json'
 
 @Injectable({ providedIn: 'root' })
 export class CheckoutService {
