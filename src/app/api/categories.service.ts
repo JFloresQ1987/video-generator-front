@@ -7,9 +7,9 @@ import {
 import { environment } from '@envs/environment';
 import { Category } from '@shared/models/category.interface';
 import { map, tap } from 'rxjs';
-import Config from '@envs/config.json'
+// import Config from '@envs/config.json'
 // import Config from '../../assets/config.json'
-// import Config from '../../config.json'
+import Config from '../../config.json'
 
 @Injectable({ providedIn: 'root' })
 export class CategoriesService {
