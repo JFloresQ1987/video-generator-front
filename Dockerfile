@@ -7,15 +7,15 @@ RUN chmod +x /usr/bin/jq
 
 WORKDIR /app
 COPY . .
-# RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/config.json > ./src/config.tmp.json && mv ./src/config.tmp.json ./src/config.json
+RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/config.json > ./src/config.tmp.json && mv ./src/config.tmp.json ./src/config.json
 # RUN jq 'to_entries | map_values({ (.key) : ("${" + .key + "}") }) | reduce .[] as $item ({}; . + $item)' ./src/config.json > ./src/config.tmp.json && mv ./src/config.tmp.json ./src/config.json
 # RUN jq 'to_entries | map_values({ (.key) : ("$" + .key) }) | reduce .[] as $item ({}; . + $item)' ./src/assets/config.json > ./src/assets/config.tmp.json && mv ./src/assets/config.tmp.json ./src/assets/config.json
 # RUN jq 'to_entries | map_values({ (.key) : ("${" + .key + "}") }) | reduce .[] as $item ({}; . + $item)' ./src/environments/config.json > ./src/environments/config.tmp.json && mv ./src/environments/config.tmp.json ./src/environments/config.json
 RUN npm install && npm run build
 
 FROM nginx:stable
-# ENV JSFOLDER=/usr/share/nginx/html/*.js
-ENV JSFOLDER=/var/www/app/*.js
+ENV JSFOLDER=/usr/share/nginx/html/*.js
+# ENV JSFOLDER=/var/www/app/*.js
 COPY ./start-nginx.sh /usr/bin/start-nginx.sh
 RUN chmod +x /usr/bin/start-nginx.sh
 
