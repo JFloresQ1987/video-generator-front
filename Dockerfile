@@ -22,10 +22,12 @@ FROM nginx:stable
 # You can make clear that this image lets the user define some environment variables by stating them:
 # ARG TEST
 ARG apiURL
+ARG SUPABASE_URL
 
 # You can also define some standard values to you environment variables
 # ENV TEST="Hello variable"
 ENV apiURL="Hello_variable"
+ENV SUPABASE_URL="qwe"
 
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d
