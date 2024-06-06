@@ -39,6 +39,7 @@ ENTRYPOINT [ "start-nginx.sh" ]
 # # COPY package.json package.json
 # # RUN npm install
 
+
 # # FROM node:20.13-alpine as builder
 # # WORKDIR /app
 # # COPY --from=dev-deps /app/node_modules ./node_modules
