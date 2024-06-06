@@ -3,7 +3,7 @@
 # State all variables which should be included here
 # variables=( apiURL, SUPABASE_URL )
 # variables=([apiURL, SUPABASE_URL])
-variables=( apiURL )
+variables=( apiURL SUPABASE_URL )
 # variables=( TEST_ENV )
 
 # The first parameter has to be the path to the directory or file which should be used for the substitution
