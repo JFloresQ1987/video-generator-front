@@ -1,6 +1,6 @@
 // declare var ENV;
 var ENV = {
-  apiURL: "asd",
+  apiURL: "${apiURL}",
   SUPABASE_URL: "",
   SUPABASE_ANON_KEY: "",
   SUPABASE_SERVICE_ROLE_KEY: "",
@@ -10,7 +10,7 @@ var ENV = {
 
 
 export const runtimeEnvironment = {
-  apiURL: ENV.apiURL === '${apiURL}' ? 'qwe' : ENV.apiURL,
+  apiURL: ENV.apiURL === '${apiURL}' ? false : ENV.apiURL,
   SUPABASE_URL: ENV.SUPABASE_URL === '${SUPABASE_URL}' ? '' : ENV.SUPABASE_URL,
   SUPABASE_ANON_KEY: ENV.SUPABASE_ANON_KEY === '${SUPABASE_ANON_KEY}' ? '' : ENV.SUPABASE_ANON_KEY,
   SUPABASE_SERVICE_ROLE_KEY: ENV.SUPABASE_SERVICE_ROLE_KEY === '${SUPABASE_SERVICE_ROLE_KEY}' ? '' : ENV.SUPABASE_SERVICE_ROLE_KEY,
