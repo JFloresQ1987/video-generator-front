@@ -25,6 +25,13 @@ export class ProductsService {
   }
 
   public getProductsByCategory(category_id: string) {
+
+    console.log('entrooo')
+    console.log(environment.production)
+    console.log(environment.apiURL)
+    console.log(Config.apiURL)
+    console.log(Config)
+
     return runInInjectionContext(this._injector, () =>
       toSignal<Product[]>(
         this._http.get<Product[]>(`${this._endPoint}/products-by-category/${category_id}`)
