@@ -23,6 +23,10 @@ FROM nginx:stable
 # ARG TEST
 ARG apiURL
 ARG SUPABASE_URL
+ARG SUPABASE_ANON_KEY
+ARG SUPABASE_SERVICE_ROLE_KEY
+ARG RECAPTCHA_V3_STACKBLITZ_KEY
+ARG RECAPTCHA_V2_DUMMY_KEY
 
 # You can also define some standard values to you environment variables
 # ENV TEST="Hello variable"

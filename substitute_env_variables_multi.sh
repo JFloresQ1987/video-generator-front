@@ -1,9 +1,14 @@
 #!/bin/bash
 
 # State all variables which should be included here
-# variables=( apiURL, SUPABASE_URL )
-# variables=([apiURL, SUPABASE_URL])
-variables=( apiURL SUPABASE_URL )
+variables=(
+  apiURL
+  SUPABASE_URL
+  SUPABASE_ANON_KEY
+  SUPABASE_SERVICE_ROLE_KEY
+  RECAPTCHA_V3_STACKBLITZ_KEY
+  RECAPTCHA_V2_DUMMY_KEY
+)
 # variables=( TEST_ENV )
 
 # The first parameter has to be the path to the directory or file which should be used for the substitution

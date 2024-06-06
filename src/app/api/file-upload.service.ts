@@ -3,7 +3,8 @@ import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { supabase } from '@shared/libs/supabase';
 import { environment } from '@envs/environment';
-import Config from '../../assets/config.json'
+import { runtimeEnvironment } from '@envs/runtimeEnvironment';
+// import Config from '../../assets/config.json'
 // import Config from '@envs/config.json'
 // import Config from '../../config.json'
 
@@ -14,7 +15,8 @@ export class FileUploadService {
     private baseUrl = 'http://localhost:8080';
 
     private readonly _http = inject(HttpClient);
-    private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
+    private readonly _endPoint = environment.production ? runtimeEnvironment.apiURL : environment.apiURL;
+    // private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
     // private readonly _endPoint = environment.apiURL;
 
     constructor(private http: HttpClient) { }
