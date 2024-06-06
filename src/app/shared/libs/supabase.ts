@@ -1,6 +1,7 @@
 import { environment } from '@envs/environment';
 import { createClient } from '@supabase/supabase-js';
-import Config from '@envs/config.json'
+import Config from '../../../assets/config.json'
+// import Config from '@envs/config.json'
 // import Config from '../../../config.json'
 
 export const supabase = createClient(

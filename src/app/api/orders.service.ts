@@ -8,7 +8,8 @@ import {
 import { environment } from '@envs/environment';
 import { Model } from '@shared/models/model.interface';
 import { NewOrder, Order, UpdatedOrder } from '@shared/models/order.interface';
-import Config from '@envs/config.json'
+import Config from '../../assets/config.json'
+// import Config from '@envs/config.json'
 // import Config from '../../config.json'
 
 @Injectable({ providedIn: 'root' })

@@ -12,7 +12,8 @@ import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
 import { RECAPTCHA_SETTINGS, RECAPTCHA_V3_SITE_KEY, RecaptchaSettings, RecaptchaV3Module } from 'ng-recaptcha';
 import { environment } from '@envs/environment';
-import Config from '@envs/config.json'
+import Config from '../assets/config.json'
+// import Config from '@envs/config.json'
 // import Config from '../config.json'
 
 export const appConfig: ApplicationConfig = {
