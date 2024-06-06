@@ -3,8 +3,8 @@ import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { supabase } from '@shared/libs/supabase';
 import { environment } from '@envs/environment';
-// import Config from '@envs/config.json'
-import Config from '../../config.json'
+import Config from '@envs/config.json'
+// import Config from '../../config.json'
 
 @Injectable({
     providedIn: 'root',
