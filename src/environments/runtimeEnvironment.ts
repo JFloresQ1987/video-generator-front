@@ -1,12 +1,12 @@
-// declare var ENV;
-var ENV = {
-  apiURL: "${apiURL}",
-  SUPABASE_URL: "",
-  SUPABASE_ANON_KEY: "",
-  SUPABASE_SERVICE_ROLE_KEY: "",
-  RECAPTCHA_V3_STACKBLITZ_KEY: "",
-  RECAPTCHA_V2_DUMMY_KEY: "",
-};
+declare var ENV: any;
+// var ENV = {
+//   apiURL: "${apiURL}",
+//   SUPABASE_URL: "",
+//   SUPABASE_ANON_KEY: "",
+//   SUPABASE_SERVICE_ROLE_KEY: "",
+//   RECAPTCHA_V3_STACKBLITZ_KEY: "",
+//   RECAPTCHA_V2_DUMMY_KEY: "",
+// };
 
 
 export const runtimeEnvironment = {
