@@ -16,10 +16,10 @@ import { runtimeEnvironment } from '../../environments/runtimeEnvironment';
 export class CategoriesService {
     public categories = signal<Category[]>([]);
     private readonly _http = inject(HttpClient);
-    // private readonly _endPoint = environment.apiURL;
+    // private readonly _endPoint = environment.API_URL;
     // private readonly _endPoint = 'http://happychecho.qhatuyki.shop/api'
-    private readonly _endPoint = environment.production ? runtimeEnvironment.apiURL : environment.apiURL;
-    // private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
+    private readonly _endPoint = environment.production ? runtimeEnvironment.API_URL : environment.API_URL;
+    // private readonly _endPoint = environment.production ? Config.API_URL : environment.API_URL;
 
     constructor() {
         

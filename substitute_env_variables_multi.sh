@@ -2,7 +2,7 @@
 
 # State all variables which should be included here
 variables=(
-  apiURL
+  API_URL
   SUPABASE_URL
   SUPABASE_ANON_KEY
   SUPABASE_SERVICE_ROLE_KEY

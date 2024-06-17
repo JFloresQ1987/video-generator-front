@@ -19,7 +19,7 @@ FROM nginx:stable
 
 # You can make clear that this image lets the user define some environment variables by stating them:
 # ARG TEST
-ARG apiURL
+ARG API_URL
 ARG SUPABASE_URL
 ARG SUPABASE_ANON_KEY
 ARG SUPABASE_SERVICE_ROLE_KEY
@@ -28,7 +28,7 @@ ARG RECAPTCHA_V2_DUMMY_KEY
 
 # You can also define some standard values to you environment variables
 # ENV TEST="Hello variable"
-# ENV apiURL="Hello_variable"
+# ENV API_URL="Hello_variable"
 # ENV SUPABASE_URL="qwe"
 
 RUN rm /etc/nginx/conf.d/default.conf

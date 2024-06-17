@@ -18,9 +18,9 @@ import { Product } from '@shared/models/product.interface';
 export class ProductsService {
   public products = signal<Product[]>([]);
   private readonly _http = inject(HttpClient);  
-  private readonly _endPoint = environment.production ? runtimeEnvironment.apiURL : environment.apiURL;
-  // private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
-  // private readonly _endPoint = environment.apiURL;
+  private readonly _endPoint = environment.production ? runtimeEnvironment.API_URL : environment.API_URL;
+  // private readonly _endPoint = environment.production ? Config.API_URL : environment.API_URL;
+  // private readonly _endPoint = environment.API_URL;
   private readonly _injector = inject(EnvironmentInjector);
 
   constructor() {

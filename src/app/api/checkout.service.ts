@@ -11,9 +11,9 @@ import { map } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class CheckoutService {
   private readonly _http = inject(HttpClient);
-  // private readonly _endPoint = environment.apiURL;
-  private readonly _endPoint = environment.production ? runtimeEnvironment.apiURL : environment.apiURL;
-  // private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
+  // private readonly _endPoint = environment.API_URL;
+  private readonly _endPoint = environment.production ? runtimeEnvironment.API_URL : environment.API_URL;
+  // private readonly _endPoint = environment.production ? Config.API_URL : environment.API_URL;
   // private readonly _url = environment.serverURL;
 
   onProceedToPay(id: string, products: ProductCheckout[]) {    

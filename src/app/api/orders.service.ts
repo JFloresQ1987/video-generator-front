@@ -17,9 +17,9 @@ import { NewOrder, Order, UpdatedOrder } from '@shared/models/order.interface';
 export class OrdersService {
     public models = signal<Model[]>([]);
     private readonly _http = inject(HttpClient);    
-    private readonly _endPoint = environment.production ? runtimeEnvironment.apiURL : environment.apiURL;
-    // private readonly _endPoint = environment.production ? Config.apiURL : environment.apiURL;
-    // private readonly _endPoint = environment.apiURL;    
+    private readonly _endPoint = environment.production ? runtimeEnvironment.API_URL : environment.API_URL;
+    // private readonly _endPoint = environment.production ? Config.API_URL : environment.API_URL;
+    // private readonly _endPoint = environment.API_URL;    
     private readonly _injector = inject(EnvironmentInjector);
 
     constructor() {
